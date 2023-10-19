@@ -2,12 +2,12 @@
   "trailingComma": "es5",
   "tabWidth": 2,
   "semi": false,
-  "singleQuote": false,
+  "singleQuote": true,
   "jsxSingleQuote": true,
   "printWidth": 100,
-  "quoteProps": "consistent",
+  "quoteProps": "as-needed",
   "bracketSpacing": true,
   "arrowParens": "avoid",
-  "singleAttributePerLine": true,
+  "singleAttributePerLine": false,
   "endOfLine": "lf"
 }
