@@ -20,5 +20,5 @@ export default meta
 type Story = StoryObj<typeof EditableSpan>
 
 export const EditableSpanStory: Story = {
-  render: (args) => <EditableSpan value={'Start value'} onChangeTitle={args.onChangeTitle} />,
+  render: args => <EditableSpan value={'Start value'} onChangeTitle={args.onChangeTitle} />,
 }

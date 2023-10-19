@@ -2,9 +2,13 @@ import { v1 } from 'uuid'
 import {
   createTodolistAC,
   updateTodolistFilterAC,
-  updateTodolistTitleAC, FilterT,
-  deleteTodolistAC, setTodolistsAC, TodolistDomainT,
-  todolistsReducer, updateTodolistEntityStatusAC,
+  updateTodolistTitleAC,
+  FilterT,
+  deleteTodolistAC,
+  setTodolistsAC,
+  TodolistDomainT,
+  todolistsReducer,
+  updateTodolistEntityStatusAC,
 } from './todolists-reducer'
 import { TodolistType } from '../../api/todolists-api'
 import { RequestStatusT } from '../../app/app-reducer'
@@ -18,8 +22,22 @@ beforeEach(() => {
   todolistID2 = v1()
 
   startState = [
-    { id: todolistID1, title: 'What to learn', filter: 'all', entityStatus: 'idle', addedDate: '', order: 0 },
-    { id: todolistID2, title: 'What to buy', filter: 'all', entityStatus: 'idle', addedDate: '', order: 0 },
+    {
+      id: todolistID1,
+      title: 'What to learn',
+      filter: 'all',
+      entityStatus: 'idle',
+      addedDate: '',
+      order: 0,
+    },
+    {
+      id: todolistID2,
+      title: 'What to buy',
+      filter: 'all',
+      entityStatus: 'idle',
+      addedDate: '',
+      order: 0,
+    },
   ]
 })
 
@@ -80,5 +98,3 @@ test('correct entity status of todolist should be changed', () => {
   expect(endState[0].entityStatus).toBe(newTodolistEntityStatus)
   expect(endState[1].entityStatus).toBe('idle')
 })
-
-

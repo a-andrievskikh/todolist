@@ -18,7 +18,6 @@ import { clearDataAC } from '../features/TodolistList/todolists-reducer'
 import { logoutTC, meTC } from '../features/Login/auth-reducer'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-
 export const App = memo(({ demo = false }: AppPropsT) => {
   const dispatch = useAppDispatch()
   const status = useAppSelector<RequestStatusT>(s => s.app.status)
@@ -35,25 +34,27 @@ export const App = memo(({ demo = false }: AppPropsT) => {
   }, [])
 
   if (!isInitialized) {
-    return <div
-      style={{ position: 'fixed', top: '30%', textAlign: 'center', width: '100%' }}>
-      <CircularProgress />
-    </div>
-
+    return (
+      <div style={{ position: 'fixed', top: '30%', textAlign: 'center', width: '100%' }}>
+        <CircularProgress />
+      </div>
+    )
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       <ErrorSnackbar />
       <AppBar position={'static'}>
         <Toolbar>
           <IconButton>
             <Menu />
           </IconButton>
-          <Typography variant={'h6'}>
-            TODOLIST
-          </Typography>
-          {isLoggedIn && <Button color={'warning'} onClick={logOutHandler}>Log out</Button>}
+          <Typography variant={'h6'}>TODOLIST</Typography>
+          {isLoggedIn && (
+            <Button color={'warning'} onClick={logOutHandler}>
+              Log out
+            </Button>
+          )}
         </Toolbar>
         {status === 'loading' && <LinearProgress color={'secondary'} />}
       </AppBar>

@@ -8,8 +8,7 @@ export default {
 export const GetTodolists = () => {
   const [state, setState] = useState<any>(null)
   const onClickHandler = () => {
-    todolistsAPI.getTodolists()
-      .then((res) => setState(res.data))
+    todolistsAPI.getTodolists().then(res => setState(res.data))
   }
   return (
     <>
@@ -27,8 +26,7 @@ export const CreateTodolist = () => {
     setTodolistTitle(e.currentTarget.value)
   }
   const onClickHandler = () => {
-    todolistsAPI.createTodolist(todolistTitle)
-      .then(res => setState(res.data))
+    todolistsAPI.createTodolist(todolistTitle).then(res => setState(res.data))
   }
 
   return (
@@ -48,8 +46,7 @@ export const DeleteTodolist = () => {
     setTodolistID(e.currentTarget.value)
   }
   const onClickHandler = () => {
-    todolistsAPI.deleteTodolist(todolistID)
-      .then(res => setState(res.data))
+    todolistsAPI.deleteTodolist(todolistID).then(res => setState(res.data))
   }
 
   return (
@@ -74,14 +71,17 @@ export const UpdateTodolistTitle = () => {
     setTodolistTitle(e.currentTarget.value)
   }
   const onClickHandler = () => {
-    todolistsAPI.updateTodolistTitle(todolistID, todolistTitle)
-      .then(res => setState(res.data))
+    todolistsAPI.updateTodolistTitle(todolistID, todolistTitle).then(res => setState(res.data))
   }
 
   return (
     <>
       <input value={todolistID} onChange={onChangeIDHandler} placeholder={'Add Todolist ID'} />
-      <input value={todolistTitle} onChange={onChangeTitleHandler} placeholder={'Add Todolist Title'} />
+      <input
+        value={todolistTitle}
+        onChange={onChangeTitleHandler}
+        placeholder={'Add Todolist Title'}
+      />
       <button onClick={onClickHandler}>Update Todolist Title</button>
       <div>{JSON.stringify(state)}</div>
     </>

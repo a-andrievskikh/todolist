@@ -28,5 +28,5 @@ export type TodolistType = {
 export enum ResultCodes {
   Success = 0,
   Failed = 1,
-  Captcha = 10
+  Captcha = 10,
 }

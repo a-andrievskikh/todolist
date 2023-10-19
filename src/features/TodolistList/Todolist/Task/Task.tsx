@@ -14,31 +14,34 @@ export const Task = memo(({ todolistID, taskID, title, status }: TaskPropsT) => 
     dispatch(deleteTaskTC(todolistID, taskID))
   }, [dispatch, todolistID, taskID])
 
-  const updateTaskStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(
-      updateTaskTC(
-        todolistID, taskID,
-        { status: e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New },
-      ),
-    )
-  }, [dispatch, todolistID, taskID])
+  const updateTaskStatus = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(
+        updateTaskTC(todolistID, taskID, {
+          status: e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New,
+        })
+      )
+    },
+    [dispatch, todolistID, taskID]
+  )
 
-  const updateTaskTitle = useCallback((taskTitle: string) => {
-    dispatch(updateTaskTC(todolistID, taskID, { title: taskTitle }))
-  }, [dispatch, todolistID, taskID])
+  const updateTaskTitle = useCallback(
+    (taskTitle: string) => {
+      dispatch(updateTaskTC(todolistID, taskID, { title: taskTitle }))
+    },
+    [dispatch, todolistID, taskID]
+  )
 
   const listItemClassName = status === TaskStatuses.Completed ? 'isDone' : ''
 
   return (
-    <li className={listItemClassName}
-        key={taskID}>
-      <Checkbox color="primary"
-                checked={status === TaskStatuses.Completed}
-                onChange={updateTaskStatus}
+    <li className={listItemClassName} key={taskID}>
+      <Checkbox
+        color='primary'
+        checked={status === TaskStatuses.Completed}
+        onChange={updateTaskStatus}
       />
-      <EditableSpan value={title}
-                    onChangeTitle={updateTaskTitle}
-      />
+      <EditableSpan value={title} onChangeTitle={updateTaskTitle} />
       <IconButton onClick={deleteTask}>
         <Delete fontSize={'small'} />
       </IconButton>

@@ -19,9 +19,11 @@ const TodolistWithRedux = () => {
   const todolist = useSelector<AppRootStateT, TodolistDomainT>(state => state.todolists[0])
   const demo = true
 
-  return todolist ?
+  return todolist ? (
     <Todolist todolist={todolist} demo={demo} />
-    : <>Todolist have expired. Restart Storybook</>
+  ) : (
+    <>Todolist have expired. Restart Storybook</>
+  )
 }
 
 export const TodolistStory: Story = {

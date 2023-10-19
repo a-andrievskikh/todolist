@@ -46,32 +46,33 @@ const ItemFormWithError = (args: ItemFormT) => {
 
   return (
     <div>
-      <TextField variant={'outlined'}
-                 label={'Введите название'}
-                 helperText={isError ? 'Title is required!' : ''}
-                 size={'small'}
-                 error={isError}
-                 value={title}
-                 onChange={onChangeHandler}
-                 onKeyDown={onKeyDownHandler}
+      <TextField
+        variant={'outlined'}
+        label={'Введите название'}
+        helperText={isError ? 'Title is required!' : ''}
+        size={'small'}
+        error={isError}
+        value={title}
+        onChange={onChangeHandler}
+        onKeyDown={onKeyDownHandler}
       />
-      <IconButton
-        onClick={addNewItem}
-      >
-        <AddBoxOutlined style={{
-          width: '30px',
-          height: '30px',
-          minWidth: '30px',
-          minHeight: '30px',
-        }}
-                        fontSize={'small'} />
+      <IconButton onClick={addNewItem}>
+        <AddBoxOutlined
+          style={{
+            width: '30px',
+            height: '30px',
+            minWidth: '30px',
+            minHeight: '30px',
+          }}
+          fontSize={'small'}
+        />
       </IconButton>
     </div>
   )
 }
 
 export const ItemFormWithErrorStory: Story = {
-  render: (args) => <ItemFormWithError addItem={args.addItem} disabled={args.disabled} />,
+  render: args => <ItemFormWithError addItem={args.addItem} disabled={args.disabled} />,
 }
 
 const ItemFormDisabled = (args: ItemFormT) => {
@@ -99,32 +100,32 @@ const ItemFormDisabled = (args: ItemFormT) => {
 
   return (
     <div>
-      <TextField variant={'outlined'}
-                 label={'Введите название'}
-                 helperText={isError ? 'Title is required!' : ''}
-                 size={'small'}
-                 error={isError}
-                 value={title}
-                 onChange={onChangeHandler}
-                 onKeyDown={onKeyDownHandler}
-                 disabled={args.disabled}
-      />
-      <IconButton
-        onClick={addNewItem}
+      <TextField
+        variant={'outlined'}
+        label={'Введите название'}
+        helperText={isError ? 'Title is required!' : ''}
+        size={'small'}
+        error={isError}
+        value={title}
+        onChange={onChangeHandler}
+        onKeyDown={onKeyDownHandler}
         disabled={args.disabled}
-      >
-        <AddBoxOutlined style={{
-          width: '30px',
-          height: '30px',
-          minWidth: '30px',
-          minHeight: '30px',
-        }}
-                        fontSize={'small'} />
+      />
+      <IconButton onClick={addNewItem} disabled={args.disabled}>
+        <AddBoxOutlined
+          style={{
+            width: '30px',
+            height: '30px',
+            minWidth: '30px',
+            minHeight: '30px',
+          }}
+          fontSize={'small'}
+        />
       </IconButton>
     </div>
   )
 }
 
 export const ItemFormDisabledStory: Story = {
-  render: (args) => <ItemFormDisabled addItem={args.addItem} disabled={true} />,
+  render: args => <ItemFormDisabled addItem={args.addItem} disabled={true} />,
 }

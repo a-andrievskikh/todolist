@@ -14,7 +14,7 @@ const meta = {
 }
 
 export default meta
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const LoggedIn: Story = {
   args: {

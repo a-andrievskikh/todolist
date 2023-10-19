@@ -7,7 +7,9 @@ export const tasksAPI = {
     return instance.get<GetTasksResponseT>(`todo-lists/${todolistID}/tasks`)
   },
   createTask(todolistID: string, taskTitle: string) {
-    return instance.post<ResponseT<{ item: TaskT }>>(`todo-lists/${todolistID}/tasks`, { title: taskTitle })
+    return instance.post<ResponseT<{ item: TaskT }>>(`todo-lists/${todolistID}/tasks`, {
+      title: taskTitle,
+    })
   },
   deleteTask(todolistID: string, taskID: string) {
     return instance.delete<ResponseT>(`todo-lists/${todolistID}/tasks/${taskID}`)
@@ -48,7 +50,7 @@ export enum TaskStatuses {
   New = 0,
   InProgress = 1,
   Completed = 2,
-  Dragt = 3
+  Dragt = 3,
 }
 
 export enum TaskPriorities {
@@ -56,5 +58,5 @@ export enum TaskPriorities {
   Middle = 1,
   High = 2,
   Urgently = 3,
-  Later = 4
+  Later = 4,
 }

@@ -4,13 +4,11 @@ import { Menu } from '@mui/icons-material'
 
 export const Header = memo(() => {
   return (
-    <AppBar position="static">
+    <AppBar position='static'>
       <IconButton>
         <Menu />
       </IconButton>
-      <Typography variant="h6">
-        Todolist
-      </Typography>
+      <Typography variant='h6'>Todolist</Typography>
       <Button color={'inherit'}>Login</Button>
     </AppBar>
   )

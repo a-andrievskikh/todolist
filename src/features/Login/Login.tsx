@@ -52,9 +52,7 @@ export const Login = () => {
   }
 
   const isButtonDisabled =
-    !!Object.values(formik.errors).length ||
-    !formik.values.email ||
-    !formik.values.password
+    !!Object.values(formik.errors).length || !formik.values.email || !formik.values.password
 
   return (
     <Grid container justifyContent={'center'}>
@@ -62,10 +60,15 @@ export const Login = () => {
         <form onSubmit={formik.handleSubmit}>
           <FormControl>
             <FormLabel>
-              <p>To log in get registered
-                <a href={'https://social-network.samuraijs.com/'}
-                   target={'_blank'}
-                   rel="noreferrer"> here
+              <p>
+                To log in get registered
+                <a
+                  href={'https://social-network.samuraijs.com/'}
+                  target={'_blank'}
+                  rel='noreferrer'
+                >
+                  {' '}
+                  here
                 </a>
               </p>
               <p>or use common test account credentials:</p>
@@ -73,29 +76,29 @@ export const Login = () => {
               <p>Password: free</p>
             </FormLabel>
             <FormGroup>
-              <TextField label="Email"
-                         margin="normal"
-                         {...formik.getFieldProps('email')}
+              <TextField label='Email' margin='normal' {...formik.getFieldProps('email')} />
+              {formik.touched.email && formik.errors.email && (
+                <div style={{ color: 'red' }}>{formik.errors.email}</div>
+              )}
+              <TextField
+                type='password'
+                label='Password'
+                margin='normal'
+                {...formik.getFieldProps('password')}
               />
-              {formik.touched.email && formik.errors.email && <div style={{ color: 'red' }}>{formik.errors.email}</div>}
-              <TextField type="password"
-                         label="Password"
-                         margin="normal"
-                         {...formik.getFieldProps('password')}
-              />
-              {formik.touched.password && formik.errors.password &&
-                <div style={{ color: 'red' }}>{formik.errors.password}</div>}
+              {formik.touched.password && formik.errors.password && (
+                <div style={{ color: 'red' }}>{formik.errors.password}</div>
+              )}
 
-              <FormControlLabel label={'Remember me'}
-                                control={
-                                  <Checkbox
-                                    {...formik.getFieldProps('rememberMe')}
-                                  />}
+              <FormControlLabel
+                label={'Remember me'}
+                control={<Checkbox {...formik.getFieldProps('rememberMe')} />}
               />
-              <Button type={'submit'}
-                      variant={'contained'}
-                      color={'primary'}
-                      disabled={isButtonDisabled}
+              <Button
+                type={'submit'}
+                variant={'contained'}
+                color={'primary'}
+                disabled={isButtonDisabled}
               >
                 Login
               </Button>

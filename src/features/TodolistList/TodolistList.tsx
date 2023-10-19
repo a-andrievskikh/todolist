@@ -12,9 +12,12 @@ export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
   const todolists = useAppSelector<TodolistDomainT[]>(s => s.todolists)
   const isLoggedIn = useAppSelector<boolean>(s => s.auth.isLoggedIn)
 
-  const addTodolist = useCallback((todolistTitle: string) => {
-    dispatch(createTodolistTC(todolistTitle))
-  }, [dispatch])
+  const addTodolist = useCallback(
+    (todolistTitle: string) => {
+      dispatch(createTodolistTC(todolistTitle))
+    },
+    [dispatch]
+  )
 
   useEffect(() => {
     if (demo || !isLoggedIn) return
@@ -27,10 +30,7 @@ export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
     return (
       <Grid item key={tl.id}>
         <Paper elevation={3} style={{ padding: '10px' }}>
-          <Todolist key={tl.id}
-                    todolist={tl}
-                    demo={demo}
-          />
+          <Todolist key={tl.id} todolist={tl} demo={demo} />
         </Paper>
       </Grid>
     )
