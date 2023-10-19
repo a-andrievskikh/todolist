@@ -1,11 +1,11 @@
 import Delete from '@mui/icons-material/Delete'
 import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
-import { updateTaskTC, deleteTaskTC } from '../../tasks-reducer'
-import { EditableSpan } from '../../../../components/EditableSpan/EditableSpan'
+import { deleteTaskTC, updateTaskTC } from '../../tasks-reducer'
+import { EditableSpan } from 'components/EditableSpan/EditableSpan'
 import { ChangeEvent, memo, useCallback } from 'react'
-import { TaskStatuses } from '../../../../api/tasks-api'
-import { useAppDispatch } from '../../../../app/hooks'
+import { TaskStatuses } from 'api/tasks-api'
+import { useAppDispatch } from 'app/hooks'
 
 export const Task = memo(({ todolistID, taskID, title, status }: TaskPropsT) => {
   const dispatch = useAppDispatch()
