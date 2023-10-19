@@ -13,7 +13,7 @@ const initialState = {
 }
 
 
-export const authReducer = (state: AuthStateType = initialState, action: AuthActionsT): AuthStateType => {
+export const authReducer = (state: AuthStateT = initialState, action: AuthActionsT): AuthStateT => {
   switch (action.type) {
     case SET_IS_LOGGED_IN: {
       return { ...state, isLoggedIn: action.value }
@@ -86,7 +86,7 @@ export const meTC = (): AppThunk => async dispatch => {
 
 // Types
 export type AuthActionsT = ReturnType<typeof setIsLoggedAC>
-type AuthStateType = typeof initialState
+export type AuthStateT = typeof initialState
 type ErrorType = {
   statusCode: 0,
   messages: [{
