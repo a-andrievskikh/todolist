@@ -3,8 +3,8 @@ import Paper from '@mui/material/Paper'
 import { memo, useCallback, useEffect } from 'react'
 import { createTodolistTC, getTodolistsTC, TodolistDomainT } from './todolists-reducer'
 import { Todolist } from './Todolist/Todolist'
-import { ItemForm } from '../../components/ItemForm/ItemForm'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { ItemForm } from 'components/ItemForm/ItemForm'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { Navigate } from 'react-router-dom'
 
 export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
