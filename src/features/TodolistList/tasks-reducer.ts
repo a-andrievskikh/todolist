@@ -8,11 +8,11 @@ import {
   CLEAR_DATA,
   clearDataAC,
 } from './todolists-reducer'
-import { TaskPriorities, tasksAPI, TaskStatuses, TaskT } from '../../api/tasks-api'
-import { AppRootStateT, AppThunk } from '../../app/store'
-import { setAppStatusAC } from '../../app/app-reducer'
-import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
-import { ResultCodes } from '../../api/todolists-api'
+import { TaskPriorities, tasksAPI, TaskStatuses, TaskT } from 'api/tasks-api'
+import { AppRootStateT, AppThunk } from 'app/store'
+import { setAppStatusAC } from 'app/app-reducer'
+import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
+import { ResultCodes } from 'api/todolists-api'
 import axios from 'axios'
 
 export const DELETE_TASK = 'DELETE-TASK'
