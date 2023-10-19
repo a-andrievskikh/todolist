@@ -1,7 +1,7 @@
-import { ResultCodes, todolistsAPI, TodolistType } from '../../api/todolists-api'
-import { AppThunk } from '../../app/store'
-import { RequestStatusT, setAppStatusAC } from '../../app/app-reducer'
-import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
+import { ResultCodes, todolistsAPI, TodolistType } from 'api/todolists-api'
+import { AppThunk } from 'app/store'
+import { RequestStatusT, setAppStatusAC } from 'app/app-reducer'
+import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import axios from 'axios'
 import { getTasksTC } from './tasks-reducer'
 
