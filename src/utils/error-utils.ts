@@ -1,6 +1,6 @@
-import { setAppErrorAC, setAppStatusAC } from '../app/app-reducer'
+import { setAppErrorAC, setAppStatusAC } from 'app/app-reducer'
 import { Dispatch } from 'redux'
-import { ResponseT } from '../api/common-types'
+import { ResponseT } from 'api/common-types'
 
 const errorText = 'Some error occurred'
 
