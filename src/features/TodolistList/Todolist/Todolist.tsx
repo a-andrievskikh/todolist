@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import { createTaskTC } from '../tasks-reducer'
-import { EditableSpan } from '../../../components/EditableSpan/EditableSpan'
-import { ItemForm } from '../../../components/ItemForm/ItemForm'
+import { EditableSpan } from 'components/EditableSpan/EditableSpan'
+import { ItemForm } from 'components/ItemForm/ItemForm'
 import Button from '@mui/material/Button'
 import {
   deleteTodolistTC,
@@ -11,8 +11,8 @@ import {
   updateTodolistTC,
 } from '../todolists-reducer'
 import { Task } from './Task/Task'
-import { TaskStatuses, TaskT } from '../../../api/tasks-api'
-import { useAppDispatch, useAppSelector } from '../../../app/hooks'
+import { TaskStatuses, TaskT } from 'api/tasks-api'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
 
 export const Todolist = memo(({ todolist, demo = false }: TodolistPropsT) => {
   const dispatch = useAppDispatch()
