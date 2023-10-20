@@ -5,13 +5,13 @@ import { handleServerAppError, handleServerNetworkError } from 'utils/error-util
 import axios from 'axios'
 import { getTasksTC } from './tasks-reducer'
 
-export const DELETE_TODOLIST = 'DELETE-TODOLIST'
-export const CREATE_TODOLIST = 'CREATE-TODOLIST'
-export const UPDATE_TODOLIST_TITLE = 'UPDATE-TODOLIST-TITLE'
-export const UPDATE_TODOLIST_FILTER = 'UPDATE-TODOLIST-FILTER'
-export const UPDATE_TODOLIST_ENTITY_STATUS = 'UPDATE-TODOLIST-ENTITY-STATUS'
-export const SET_TODOLISTS = 'SET-TODOLISTS'
-export const CLEAR_DATA = 'CLEAR-DATA'
+export const DELETE_TODOLIST = 'DELETE_TODOLIST'
+export const CREATE_TODOLIST = 'CREATE_TODOLIST'
+export const UPDATE_TODOLIST_TITLE = 'UPDATE_TODOLIST_TITLE'
+export const UPDATE_TODOLIST_FILTER = 'UPDATE_TODOLIST_FILTER'
+export const UPDATE_TODOLIST_ENTITY_STATUS = 'UPDATE_TODOLIST_ENTITY_STATUS'
+export const SET_TODOLISTS = 'SET_TODOLISTS'
+export const CLEAR_DATA = 'CLEAR_DATA'
 
 const initialState: TodolistDomainT[] = []
 
@@ -29,13 +29,9 @@ export const todolistsReducer = (
     case UPDATE_TODOLIST_TITLE:
       return state.map(tl => (tl.id === action.todolistID ? { ...tl, title: action.newTitle } : tl))
     case UPDATE_TODOLIST_FILTER:
-      return state.map(tl =>
-        tl.id === action.todolistID ? { ...tl, filter: action.filterValue } : tl
-      )
+      return state.map(tl => (tl.id === action.todolistID ? { ...tl, filter: action.filterValue } : tl))
     case UPDATE_TODOLIST_ENTITY_STATUS:
-      return state.map(tl =>
-        tl.id === action.todolistID ? { ...tl, entityStatus: action.status } : tl
-      )
+      return state.map(tl => (tl.id === action.todolistID ? { ...tl, entityStatus: action.status } : tl))
     case CLEAR_DATA:
       return []
     default:
@@ -44,18 +40,15 @@ export const todolistsReducer = (
 }
 
 // Actions
-export const deleteTodolistAC = (todolistID: string) =>
-  ({ type: DELETE_TODOLIST, todolistID }) as const
-export const createTodolistAC = (todolist: TodolistType) =>
-  ({ type: CREATE_TODOLIST, todolist }) as const
+export const deleteTodolistAC = (todolistID: string) => ({ type: DELETE_TODOLIST, todolistID }) as const
+export const createTodolistAC = (todolist: TodolistType) => ({ type: CREATE_TODOLIST, todolist }) as const
 export const updateTodolistTitleAC = (todolistID: string, newTitle: string) =>
   ({ type: UPDATE_TODOLIST_TITLE, todolistID, newTitle }) as const
 export const updateTodolistFilterAC = (todolistID: string, filterValue: FilterT) =>
   ({ type: UPDATE_TODOLIST_FILTER, todolistID, filterValue }) as const
 export const updateTodolistEntityStatusAC = (todolistID: string, status: RequestStatusT) =>
   ({ type: UPDATE_TODOLIST_ENTITY_STATUS, todolistID, status }) as const
-export const setTodolistsAC = (todolists: TodolistType[]) =>
-  ({ type: SET_TODOLISTS, todolists }) as const
+export const setTodolistsAC = (todolists: TodolistType[]) => ({ type: SET_TODOLISTS, todolists }) as const
 export const clearDataAC = () => ({ type: CLEAR_DATA }) as const
 
 // Thunks
