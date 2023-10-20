@@ -1,12 +1,12 @@
-import { setAppStatusAC, setInitializedAC } from '../../app/app-reducer'
+import { setAppStatusAC, setInitializedAC } from 'app/app-reducer'
 import axios from 'axios'
-import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
-import { AppThunk } from '../../app/store'
-import { authApi } from '../../api/auth-api'
-import { ResultCodes } from '../../api/todolists-api'
+import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
+import { AppThunk } from 'app/store'
+import { authApi } from 'api/auth-api'
+import { ResultCodes } from 'api/todolists-api'
 import { LoginDataType } from './Login'
 
-const SET_IS_LOGGED_IN = 'login/SET-IS-LOGGED-IN'
+const SET_IS_LOGGED_IN = 'LOGIN/SET_IS_LOGGED_IN'
 
 const initialState = {
   isLoggedIn: false,
