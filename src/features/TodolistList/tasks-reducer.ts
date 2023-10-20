@@ -2,10 +2,10 @@ import {
   CREATE_TODOLIST,
   DELETE_TODOLIST,
   SET_TODOLISTS,
+  CLEAR_DATA,
   createTodolistAC,
   deleteTodolistAC,
   setTodolistsAC,
-  CLEAR_DATA,
   clearDataAC,
 } from './todolists-reducer'
 import { TaskPriorities, tasksAPI, TaskStatuses, TaskT } from 'api/tasks-api'
@@ -15,17 +15,14 @@ import { handleServerAppError, handleServerNetworkError } from 'utils/error-util
 import { ResultCodes } from 'api/todolists-api'
 import axios from 'axios'
 
-export const DELETE_TASK = 'DELETE-TASK'
-export const CREATE_TASK = 'CREATE-TASK'
-export const UPDATE_TASK = 'UPDATE-TASK'
-export const SET_TASKS = 'SET-TASKS'
+export const DELETE_TASK = 'DELETE_TASK'
+export const CREATE_TASK = 'CREATE_TASK'
+export const UPDATE_TASK = 'UPDATE_TASK'
+export const SET_TASKS = 'SET_TASKS'
 
 const initialState: TasksStateT = {}
 
-export const tasksReducer = (
-  state: TasksStateT = initialState,
-  action: TasksActionsT
-): TasksStateT => {
+export const tasksReducer = (state: TasksStateT = initialState, action: TasksActionsT): TasksStateT => {
   switch (action.type) {
     case DELETE_TASK:
       return {
@@ -63,8 +60,7 @@ export const tasksReducer = (
 }
 
 // Actions
-export const deleteTaskAC = (todolistID: string, taskID: string) =>
-  ({ type: DELETE_TASK, todolistID, taskID }) as const
+export const deleteTaskAC = (todolistID: string, taskID: string) => ({ type: DELETE_TASK, todolistID, taskID }) as const
 export const createTaskAC = (task: TaskT) => ({ type: CREATE_TASK, task }) as const
 export const updateTaskAC = (todolistID: string, taskID: string, model: UpdateDomainTaskModelT) =>
   ({ type: UPDATE_TASK, todolistID, taskID, model }) as const
@@ -125,11 +121,7 @@ export const createTaskTC =
       }
     }
   }
-export const updateTaskTC = (
-  todolistID: string,
-  taskID: string,
-  model: UpdateDomainTaskModelT
-): AppThunk => {
+export const updateTaskTC = (todolistID: string, taskID: string, model: UpdateDomainTaskModelT): AppThunk => {
   return async (dispatch, getState: () => AppRootStateT) => {
     dispatch(setAppStatusAC('loading'))
     const task = getState().tasks[todolistID].find(t => t.id === taskID)
