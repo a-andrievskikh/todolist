@@ -1,5 +1,5 @@
-const APP_SET_STATUS = 'APP/SET-STATUS'
-const APP_SET_ERROR = 'APP/SET-ERROR'
+const APP_SET_STATUS = 'APP/SET_STATUS'
+const APP_SET_ERROR = 'APP/SET_ERROR'
 const APP_SET_INITIALIZED = 'APP/SET_INITIALIZED'
 
 const initialState: AppStateT = {
@@ -26,11 +26,9 @@ export const appReducer = (state: AppStateT = initialState, action: AppActionsT)
 }
 
 // Actions
-export const setAppStatusAC = (status: RequestStatusT) =>
-  ({ type: APP_SET_STATUS, status }) as const
+export const setAppStatusAC = (status: RequestStatusT) => ({ type: APP_SET_STATUS, status }) as const
 export const setAppErrorAC = (error: ResponseErrorT) => ({ type: APP_SET_ERROR, error }) as const
-export const setInitializedAC = (isInitialized: boolean) =>
-  ({ type: APP_SET_INITIALIZED, isInitialized }) as const
+export const setInitializedAC = (isInitialized: boolean) => ({ type: APP_SET_INITIALIZED, isInitialized }) as const
 
 // Types
 export type AppActionsT =
