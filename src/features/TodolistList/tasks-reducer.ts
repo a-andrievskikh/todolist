@@ -72,11 +72,11 @@ export const setTasksAC = (todolistID: string, tasks: TaskT[]) => {
 export const getTasksTC =
   (todolistID: string): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       const res = await tasksAPI.getTasks(todolistID)
       dispatch(setTasksAC(todolistID, res.data.items))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } catch (e) {
       if (axios.isAxiosError<ErrorType>(e)) {
         handleServerNetworkError(dispatch, e.message)
@@ -88,11 +88,11 @@ export const getTasksTC =
 export const deleteTaskTC =
   (todolistID: string, taskID: string): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       await tasksAPI.deleteTask(todolistID, taskID)
       dispatch(deleteTaskAC(todolistID, taskID))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } catch (e) {
       if (axios.isAxiosError<ErrorType>(e)) {
         handleServerNetworkError(dispatch, e.message)
@@ -104,12 +104,12 @@ export const deleteTaskTC =
 export const createTaskTC =
   (todolistID: string, title: string): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       const res = await tasksAPI.createTask(todolistID, title)
       if (res.data.resultCode === ResultCodes.Success) {
         dispatch(createTaskAC(res.data.data.item))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setAppStatusAC({ status: 'succeeded' }))
       } else {
         handleServerAppError(dispatch, res.data)
       }
@@ -123,7 +123,7 @@ export const createTaskTC =
   }
 export const updateTaskTC = (todolistID: string, taskID: string, model: UpdateDomainTaskModelT): AppThunk => {
   return async (dispatch, getState: () => AppRootStateT) => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     const task = getState().tasks[todolistID].find(t => t.id === taskID)
     if (!task) {
       console.warn('task not found in the state')
@@ -141,7 +141,7 @@ export const updateTaskTC = (todolistID: string, taskID: string, model: UpdateDo
       })
       if (res.data.resultCode === ResultCodes.Success) {
         dispatch(updateTaskAC(todolistID, taskID, model))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setAppStatusAC({ status: 'succeeded' }))
       } else {
         handleServerAppError(dispatch, res.data)
       }
