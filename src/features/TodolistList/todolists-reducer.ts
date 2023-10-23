@@ -56,7 +56,7 @@ export const getTodolistsTC = (): AppThunk => async dispatch => {
   try {
     const res = await todolistsAPI.getTodolists()
     dispatch(setTodolistsAC(res.data))
-    dispatch(setAppStatusAC('succeeded'))
+    dispatch(setAppStatusAC({ status: 'succeeded' }))
     res.data.forEach(tl => dispatch(getTasksTC(tl.id)))
   } catch (e) {
     if (axios.isAxiosError<ErrorT>(e)) {
@@ -69,13 +69,13 @@ export const getTodolistsTC = (): AppThunk => async dispatch => {
 export const deleteTodolistTC =
   (todolistID: string): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     dispatch(updateTodolistEntityStatusAC(todolistID, 'loading'))
     try {
       const res = await todolistsAPI.deleteTodolist(todolistID)
       if (res.data.resultCode === ResultCodes.Success) {
         dispatch(deleteTodolistAC(todolistID))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setAppStatusAC({ status: 'succeeded' }))
       } else {
         handleServerAppError(dispatch, res.data)
       }
@@ -90,12 +90,12 @@ export const deleteTodolistTC =
 export const createTodolistTC =
   (title: string): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       const res = await todolistsAPI.createTodolist(title)
       if (res.data.resultCode === ResultCodes.Success) {
         dispatch(createTodolistAC(res.data.data.item))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setAppStatusAC({ status: 'succeeded' }))
       } else {
         handleServerAppError(dispatch, res.data)
       }
@@ -110,11 +110,11 @@ export const createTodolistTC =
 export const updateTodolistTC =
   (todolistID: string, title: string): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       await todolistsAPI.updateTodolistTitle(todolistID, title)
       dispatch(updateTodolistTitleAC(todolistID, title))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } catch (e) {
       if (axios.isAxiosError<ErrorT>(e)) {
         handleServerNetworkError(dispatch, e.message)
