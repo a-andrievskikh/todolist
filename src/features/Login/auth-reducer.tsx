@@ -7,7 +7,7 @@ import { ResultCodes } from 'api/todolists-api'
 import { LoginDataType } from './Login'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export const slice = createSlice({
+const slice = createSlice({
   name: 'auth',
   initialState: {
     isLoggedIn: false,
@@ -26,12 +26,12 @@ export const { setIsLoggedInAC } = slice.actions
 export const loginTC =
   (data: LoginDataType): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       const res = await authApi.login(data)
       if (res.data.resultCode === ResultCodes.Success) {
         dispatch(setIsLoggedInAC({ isLoggedIn: true }))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setAppStatusAC({ status: 'succeeded' }))
       } else {
         handleServerAppError(dispatch, res.data)
       }
@@ -44,12 +44,12 @@ export const loginTC =
     }
   }
 export const logoutTC = (): AppThunk => async dispatch => {
-  dispatch(setAppStatusAC('loading'))
+  dispatch(setAppStatusAC({ status: 'loading' }))
   try {
     const res = await authApi.logout()
     if (res.data.resultCode === ResultCodes.Success) {
       dispatch(setIsLoggedInAC({ isLoggedIn: false }))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } else {
       handleServerAppError(dispatch, res.data)
     }
@@ -62,12 +62,12 @@ export const logoutTC = (): AppThunk => async dispatch => {
   }
 }
 export const meTC = (): AppThunk => async dispatch => {
-  dispatch(setAppStatusAC('loading'))
+  dispatch(setAppStatusAC({ status: 'loading' }))
   try {
     const res = await authApi.me()
     if (res.data.resultCode === ResultCodes.Success) {
       dispatch(setIsLoggedInAC({ isLoggedIn: true }))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } else {
       handleServerAppError(dispatch, res.data)
     }
@@ -78,7 +78,7 @@ export const meTC = (): AppThunk => async dispatch => {
       handleServerNetworkError(dispatch, (e as Error).message)
     }
   } finally {
-    dispatch(setInitializedAC(true))
+    dispatch(setInitializedAC({ isInitialized: true }))
   }
 }
 
