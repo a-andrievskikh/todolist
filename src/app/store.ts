@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
-import { TasksActionsT, tasksReducer } from 'features/TodolistList/tasks-reducer'
-import { TodolistActionsT, todolistsReducer } from 'features/TodolistList/todolists-reducer'
+import { AnyAction, combineReducers } from 'redux'
+import { tasksReducer } from 'features/TodolistList/tasks-reducer'
+import { todolistsReducer } from 'features/TodolistList/todolists-reducer'
 import { ThunkAction, ThunkDispatch } from 'redux-thunk'
-import { AppActionsT, appReducer } from './app-reducer'
-import { AuthActionsT, authReducer } from 'features/Login/auth-reducer'
+import { appReducer } from './app-reducer'
+import { authReducer } from 'features/Login/auth-reducer'
 import { configureStore } from '@reduxjs/toolkit'
 
 export const rootReducer = combineReducers({
@@ -16,9 +16,8 @@ export const rootReducer = combineReducers({
 export const store = configureStore({ reducer: rootReducer })
 
 export type AppRootStateT = ReturnType<typeof store.getState>
-export type AppRootActionsT = TodolistActionsT | TasksActionsT | AppActionsT | AuthActionsT
-export type AppDispatch = ThunkDispatch<AppRootStateT, unknown, AppRootActionsT>
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateT, unknown, AppRootActionsT>
+export type AppDispatch = ThunkDispatch<AppRootStateT, unknown, AnyAction>
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateT, unknown, AnyAction>
 
 // @ts-ignore
 window.store = store
