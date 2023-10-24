@@ -14,7 +14,7 @@ import { TodolistList } from 'features/TodolistList/TodolistList'
 import { Login } from 'features/Login/Login'
 import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
 import { RequestStatusT } from './app-reducer'
-import { clearDataAC } from 'features/TodolistList/todolists-reducer'
+import { todolistsActions } from 'features/TodolistList/todolists-reducer'
 import { logoutTC, meTC } from 'features/Login/auth-reducer'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
@@ -26,12 +26,12 @@ export const App = memo(({ demo = false }: AppPropsT) => {
 
   const logOutHandler = () => {
     dispatch(logoutTC())
-    dispatch(clearDataAC())
+    dispatch(todolistsActions.clearData(null))
   }
 
   useEffect(() => {
     dispatch(meTC())
-  }, [])
+  }, [dispatch])
 
   if (!isInitialized) {
     return (
@@ -40,7 +40,7 @@ export const App = memo(({ demo = false }: AppPropsT) => {
       </div>
     )
   }
-
+  console.log('App rendered!')
   return (
     <div className='App'>
       <ErrorSnackbar />
