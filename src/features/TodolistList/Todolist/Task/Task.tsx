@@ -1,7 +1,7 @@
 import Delete from '@mui/icons-material/Delete'
 import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
-import { deleteTaskTC, updateTaskTC } from '../../tasks-reducer'
+import { deleteTaskTC, updateTaskTC } from 'features/TodolistList/tasks-slice'
 import { EditableSpan } from 'components/EditableSpan/EditableSpan'
 import { ChangeEvent, memo, useCallback } from 'react'
 import { TaskStatuses } from 'api/tasks-api'
@@ -36,11 +36,7 @@ export const Task = memo(({ todolistID, taskID, title, status }: TaskPropsT) => 
 
   return (
     <li className={listItemClassName} key={taskID}>
-      <Checkbox
-        color='primary'
-        checked={status === TaskStatuses.Completed}
-        onChange={updateTaskStatus}
-      />
+      <Checkbox color='primary' checked={status === TaskStatuses.Completed} onChange={updateTaskStatus} />
       <EditableSpan value={title} onChangeTitle={updateTaskTitle} />
       <IconButton onClick={deleteTask}>
         <Delete fontSize={'small'} />
