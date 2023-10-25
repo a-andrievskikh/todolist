@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react'
-import { createTaskTC } from '../tasks-reducer'
+import { createTaskTC } from 'features/TodolistList/tasks-slice'
 import { EditableSpan } from 'components/EditableSpan/EditableSpan'
 import { ItemForm } from 'components/ItemForm/ItemForm'
 import Button from '@mui/material/Button'
@@ -7,9 +7,9 @@ import {
   deleteTodolistTC,
   FilterT,
   TodolistDomainT,
-  updateTodolistFilterAC,
+  todolistsActions,
   updateTodolistTC,
-} from '../todolists-reducer'
+} from 'features/TodolistList/todolists-slice'
 import { Task } from './Task/Task'
 import { TaskStatuses, TaskT } from 'api/tasks-api'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
@@ -41,7 +41,7 @@ export const Todolist = memo(({ todolist, demo = false }: TodolistPropsT) => {
 
   const updateTodolistFilter = useCallback(
     (filterValue: FilterT) => {
-      dispatch(updateTodolistFilterAC(todolist.id, filterValue))
+      dispatch(todolistsActions.updateTodolistFilter({ todolistID: todolist.id, filter: filterValue }))
     },
     [dispatch, todolist.id]
   )
@@ -54,25 +54,14 @@ export const Todolist = memo(({ todolist, demo = false }: TodolistPropsT) => {
   )
 
   const tasksList = tasks.map(task => {
-    return (
-      <Task
-        key={task.id}
-        taskID={task.id}
-        title={task.title}
-        status={task.status}
-        todolistID={todolist.id}
-      />
-    )
+    return <Task key={task.id} taskID={task.id} title={task.title} status={task.status} todolistID={todolist.id} />
   })
 
   return (
     <div>
       <h3>
         <EditableSpan value={todolist.title} onChangeTitle={updateTodolistTitle} />
-        <button
-          onClick={() => deleteTodolist(todolist.id)}
-          disabled={todolist.entityStatus === 'loading'}
-        >
+        <button onClick={() => deleteTodolist(todolist.id)} disabled={todolist.entityStatus === 'loading'}>
           x
         </button>
       </h3>
