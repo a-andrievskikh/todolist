@@ -2,17 +2,17 @@ import { ReactNode } from 'react'
 import { v1 } from 'uuid'
 import { Provider } from 'react-redux'
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux'
-import { tasksReducer } from 'features/TodolistList/tasks-reducer'
-import { todolistsReducer } from 'features/TodolistList/todolists-reducer'
-import { appReducer } from 'app/app-reducer'
+import { tasksSlice } from 'features/TodolistList/tasks-slice'
+import { todolistsSlice } from 'features/TodolistList/todolists-slice'
+import { appSlice } from 'app/app-slice'
 import { AppRootStateT } from 'app/store'
 import { TaskStatuses } from 'api/tasks-api'
 import thunk from 'redux-thunk'
 
 export const rootReducer = combineReducers({
-  tasks: tasksReducer,
-  todolists: todolistsReducer,
-  app: appReducer,
+  tasks: tasksSlice,
+  todolists: todolistsSlice,
+  app: appSlice,
 })
 
 export const todolistID1 = v1()
