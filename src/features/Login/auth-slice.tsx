@@ -1,4 +1,3 @@
-import { setAppStatusAC, setInitializedAC } from 'app/app-reducer'
 import axios from 'axios'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import { AppThunk } from 'app/store'
@@ -6,6 +5,8 @@ import { authApi } from 'api/auth-api'
 import { ResultCodes } from 'api/todolists-api'
 import { LoginDataType } from './Login'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { appActions } from 'app/app-slice'
+import { clearData } from 'common/actions/clearData'
 
 const slice = createSlice({
   name: 'auth',
@@ -13,78 +14,78 @@ const slice = createSlice({
     isLoggedIn: false,
   },
   reducers: {
-    setIsLoggedInAC: (state, action: PayloadAction<{ isLoggedIn: boolean }>) => {
+    setIsLoggedIn: (state, action: PayloadAction<{ isLoggedIn: boolean }>) => {
       state.isLoggedIn = action.payload.isLoggedIn
     },
   },
 })
 
-export const authReducer = slice.reducer
-export const { setIsLoggedInAC } = slice.actions
+export const authSlice = slice.reducer
+export const authActions = slice.actions
 
 // Thunks
 export const loginTC =
   (data: LoginDataType): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC({ status: 'loading' }))
+    dispatch(appActions.setAppStatus({ status: 'loading' }))
     try {
       const res = await authApi.login(data)
       if (res.data.resultCode === ResultCodes.Success) {
-        dispatch(setIsLoggedInAC({ isLoggedIn: true }))
-        dispatch(setAppStatusAC({ status: 'succeeded' }))
+        dispatch(authActions.setIsLoggedIn({ isLoggedIn: true }))
+        dispatch(appActions.setAppStatus({ status: 'succeeded' }))
       } else {
         handleServerAppError(dispatch, res.data)
       }
     } catch (e) {
       if (axios.isAxiosError<ErrorType>(e)) {
-        handleServerNetworkError(dispatch, e.message)
+        handleServerNetworkError(dispatch, e)
       } else {
-        handleServerNetworkError(dispatch, (e as Error).message)
+        handleServerNetworkError(dispatch, e as Error)
       }
     }
   }
 export const logoutTC = (): AppThunk => async dispatch => {
-  dispatch(setAppStatusAC({ status: 'loading' }))
+  dispatch(appActions.setAppStatus({ status: 'loading' }))
   try {
     const res = await authApi.logout()
     if (res.data.resultCode === ResultCodes.Success) {
-      dispatch(setIsLoggedInAC({ isLoggedIn: false }))
-      dispatch(setAppStatusAC({ status: 'succeeded' }))
+      dispatch(authActions.setIsLoggedIn({ isLoggedIn: false }))
+      dispatch(clearData())
+      dispatch(appActions.setAppStatus({ status: 'succeeded' }))
     } else {
       handleServerAppError(dispatch, res.data)
     }
   } catch (e) {
     if (axios.isAxiosError<ErrorType>(e)) {
-      handleServerNetworkError(dispatch, e.message)
+      handleServerNetworkError(dispatch, e)
     } else {
-      handleServerNetworkError(dispatch, (e as Error).message)
+      handleServerNetworkError(dispatch, e as Error)
     }
   }
 }
 export const meTC = (): AppThunk => async dispatch => {
-  dispatch(setAppStatusAC({ status: 'loading' }))
+  dispatch(appActions.setAppStatus({ status: 'loading' }))
   try {
     const res = await authApi.me()
     if (res.data.resultCode === ResultCodes.Success) {
-      dispatch(setIsLoggedInAC({ isLoggedIn: true }))
-      dispatch(setAppStatusAC({ status: 'succeeded' }))
+      dispatch(authActions.setIsLoggedIn({ isLoggedIn: true }))
+      dispatch(appActions.setAppStatus({ status: 'succeeded' }))
     } else {
       handleServerAppError(dispatch, res.data)
     }
   } catch (e) {
     if (axios.isAxiosError<ErrorType>(e)) {
-      handleServerNetworkError(dispatch, e.message)
+      handleServerNetworkError(dispatch, e)
     } else {
-      handleServerNetworkError(dispatch, (e as Error).message)
+      handleServerNetworkError(dispatch, e as Error)
     }
   } finally {
-    dispatch(setInitializedAC({ isInitialized: true }))
+    dispatch(appActions.setInitialized({ isInitialized: true }))
   }
 }
 
 // Types
-export type AuthActionsT = ReturnType<typeof setIsLoggedInAC>
-export type AuthStateT = ReturnType<typeof authReducer>
+export type AuthStateT = ReturnType<typeof authSlice>
 
 type ErrorType = {
   statusCode: 0
