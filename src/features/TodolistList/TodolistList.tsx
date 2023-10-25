@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { memo, useCallback, useEffect } from 'react'
-import { createTodolistTC, getTodolistsTC, TodolistDomainT } from './todolists-reducer'
+import { createTodolistTC, getTodolistsTC, TodolistDomainT } from 'features/TodolistList/todolists-slice'
 import { Todolist } from './Todolist/Todolist'
 import { ItemForm } from 'components/ItemForm/ItemForm'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
