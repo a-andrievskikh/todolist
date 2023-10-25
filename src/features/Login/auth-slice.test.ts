@@ -1,4 +1,4 @@
-import { authReducer, AuthStateT, setIsLoggedInAC } from './auth-reducer'
+import { authActions, authSlice, AuthStateT } from 'features/Login/auth-slice'
 
 let startState: AuthStateT
 
@@ -9,7 +9,7 @@ beforeEach(() => {
 })
 
 test('login status should be changed', () => {
-  const endState = authReducer(startState, setIsLoggedInAC({ isLoggedIn: true }))
+  const endState = authSlice(startState, authActions.setIsLoggedIn({ isLoggedIn: true }))
 
   expect(endState.isLoggedIn).toBe(true)
 })
