@@ -13,21 +13,19 @@ import { useAppDispatch, useAppSelector } from './hooks'
 import { TodolistList } from 'features/TodolistList/TodolistList'
 import { Login } from 'features/Login/Login'
 import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
-import { RequestStatusT } from './app-reducer'
-import { todolistsActions } from 'features/TodolistList/todolists-reducer'
-import { logoutTC, meTC } from 'features/Login/auth-reducer'
+import { RequestStatusT } from 'app/app-slice'
+import { logoutTC, meTC } from 'features/Login/auth-slice'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { isInitializedSelector, isLoggedInSelector, statusSelector } from 'app/app-selectors'
 
 export const App = memo(({ demo = false }: AppPropsT) => {
-  const dispatch = useAppDispatch()
-  const status = useAppSelector<RequestStatusT>(s => s.app.status)
-  const isInitialized = useAppSelector<boolean>(s => s.app.isInitialized)
-  const isLoggedIn = useAppSelector<boolean>(s => s.auth.isLoggedIn)
+  const status = useAppSelector<RequestStatusT>(statusSelector)
+  const isInitialized = useAppSelector<boolean>(isInitializedSelector)
+  const isLoggedIn = useAppSelector<boolean>(isLoggedInSelector)
 
-  const logOutHandler = () => {
-    dispatch(logoutTC())
-    dispatch(todolistsActions.clearData(null))
-  }
+  const dispatch = useAppDispatch()
+
+  const logOutHandler = () => dispatch(logoutTC())
 
   useEffect(() => {
     dispatch(meTC())
