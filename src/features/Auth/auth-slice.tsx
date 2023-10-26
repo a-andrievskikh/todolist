@@ -24,7 +24,7 @@ export const authSlice = slice.reducer
 export const authActions = slice.actions
 
 // Thunks
-export const loginTC =
+export const authTC =
   (data: AuthDataT): AppThunk =>
   async dispatch => {
     dispatch(appActions.setAppStatus({ status: 'loading' }))

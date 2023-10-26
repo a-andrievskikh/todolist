@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
-import { loginTC } from 'features/Auth/auth-slice'
+import { authTC } from 'features/Auth/auth-slice'
 import { Navigate } from 'react-router-dom'
 import { authSelectors } from 'features/Auth/auth-selectors'
 
@@ -43,7 +43,7 @@ export const Auth = () => {
     } as AuthDataT,
     validate,
     onSubmit: () => {
-      dispatch(loginTC(formik.values))
+      dispatch(authTC(formik.values))
       formik.resetForm()
     },
   })
