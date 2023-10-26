@@ -97,7 +97,7 @@ type FormikErrorType = {
   password?: string
 }
 
-export type LoginDataType = {
+export type AuthDataType = {
   email: string
   password: string
   rememberMe: boolean

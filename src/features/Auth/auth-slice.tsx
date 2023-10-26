@@ -3,7 +3,7 @@ import { handleServerAppError, handleServerNetworkError } from 'utils/error-util
 import { AppThunk } from 'app/store'
 import { authApi } from 'api/auth-api'
 import { ResultCodes } from 'api/todolists-api'
-import { LoginDataType } from 'features/Auth/Auth'
+import { AuthDataType } from 'features/Auth/Auth'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { appActions } from 'app/app-slice'
 import { clearData } from 'common/actions/clearData'
@@ -25,7 +25,7 @@ export const authActions = slice.actions
 
 // Thunks
 export const loginTC =
-  (data: LoginDataType): AppThunk =>
+  (data: AuthDataType): AppThunk =>
   async dispatch => {
     dispatch(appActions.setAppStatus({ status: 'loading' }))
     try {

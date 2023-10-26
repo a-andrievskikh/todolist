@@ -1,12 +1,12 @@
 import { instance } from './basic'
-import { LoginDataType } from 'features/Auth/Auth'
+import { AuthDataType } from 'features/Auth/Auth'
 import { ResponseT } from './common-types'
 
 export const authApi = {
   me() {
     return instance.get<ResponseT<UserT>>('auth/me')
   },
-  login(loginData: LoginDataType) {
+  login(loginData: AuthDataType) {
     return instance.post<ResponseT<{ userId: number }>>('auth/login', loginData)
   },
   logout() {
