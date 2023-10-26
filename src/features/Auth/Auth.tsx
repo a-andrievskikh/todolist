@@ -6,53 +6,15 @@ import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import { useFormik } from 'formik'
-import { useAppDispatch, useAppSelector } from 'app/hooks'
-import { authTC } from 'features/Auth/auth-slice'
 import { Navigate } from 'react-router-dom'
-import { authSelectors } from 'features/Auth/auth-selectors'
-
-const validate = (values: FormikErrorT) => {
-  const errors: FormikErrorT = {}
-  const emailRegexp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-  const passwordRegexp = /^.{4,20}$/i
-
-  if (!values.email) {
-    errors.email = 'Required'
-  } else if (!emailRegexp.test(values.email)) {
-    errors.email = 'Invalid email address'
-  }
-  if (!values.password) {
-    errors.password = 'Required'
-  } else if (!passwordRegexp.test(values.password)) {
-    errors.password = 'Must be 4 >= character <= 20'
-  }
-  return errors
-}
+import { useAuthValidate } from 'features/Auth/useAuthValidate'
+import { useAuth } from 'features/Auth/useAuth'
 
 export const Auth = () => {
-  const isLoggedIn = useAppSelector<boolean>(authSelectors)
+  const { formik, isButtonDisabled } = useAuthValidate()
+  const { isLoggedIn } = useAuth()
 
-  const dispatch = useAppDispatch()
-
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-      rememberMe: false,
-    } as AuthDataT,
-    validate,
-    onSubmit: () => {
-      dispatch(authTC(formik.values))
-      formik.resetForm()
-    },
-  })
-
-  if (isLoggedIn) {
-    return <Navigate to={'/'} />
-  }
-
-  const isButtonDisabled = !!Object.values(formik.errors).length || !formik.values.email || !formik.values.password
+  if (isLoggedIn) return <Navigate to={'/'} />
 
   return (
     <Grid container justifyContent={'center'}>
@@ -89,16 +51,4 @@ export const Auth = () => {
       </Grid>
     </Grid>
   )
-}
-
-// Types
-type FormikErrorT = {
-  email?: string
-  password?: string
-}
-
-export type AuthDataT = {
-  email: string
-  password: string
-  rememberMe: boolean
 }

@@ -3,10 +3,10 @@ import { handleServerAppError, handleServerNetworkError } from 'utils/error-util
 import { AppThunk } from 'app/store'
 import { authApi } from 'api/auth-api'
 import { ResultCodes } from 'api/todolists-api'
-import { AuthDataT } from 'features/Auth/Auth'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { appActions } from 'app/app-slice'
 import { clearData } from 'common/actions/clearData'
+import { AuthDataT } from 'features/Auth/useAuthValidate'
 
 const slice = createSlice({
   name: 'auth',
