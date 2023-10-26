@@ -30,7 +30,7 @@ const validate = (values: FormikErrorType) => {
   return errors
 }
 
-export const Login = () => {
+export const Auth = () => {
   const isLoggedIn = useAppSelector<boolean>(authSelectors)
 
   const dispatch = useAppDispatch()
