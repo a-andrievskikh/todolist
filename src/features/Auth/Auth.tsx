@@ -12,8 +12,8 @@ import { loginTC } from 'features/Auth/auth-slice'
 import { Navigate } from 'react-router-dom'
 import { authSelectors } from 'features/Auth/auth-selectors'
 
-const validate = (values: FormikErrorType) => {
-  const errors: FormikErrorType = {}
+const validate = (values: FormikErrorT) => {
+  const errors: FormikErrorT = {}
   const emailRegexp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   const passwordRegexp = /^.{4,20}$/i
 
@@ -92,12 +92,12 @@ export const Auth = () => {
 }
 
 // Types
-type FormikErrorType = {
+type FormikErrorT = {
   email?: string
   password?: string
 }
 
-export type AuthDataType = {
+export type AuthDataT = {
   email: string
   password: string
   rememberMe: boolean
