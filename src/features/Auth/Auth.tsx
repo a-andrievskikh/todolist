@@ -40,7 +40,7 @@ export const Auth = () => {
       email: '',
       password: '',
       rememberMe: false,
-    },
+    } as AuthDataT,
     validate,
     onSubmit: () => {
       dispatch(loginTC(formik.values))
