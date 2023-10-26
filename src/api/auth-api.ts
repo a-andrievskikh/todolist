@@ -1,5 +1,5 @@
 import { instance } from './basic'
-import { LoginDataType } from '../features/Login/Login'
+import { LoginDataType } from 'features/Login/Auth'
 import { ResponseT } from './common-types'
 
 export const authApi = {

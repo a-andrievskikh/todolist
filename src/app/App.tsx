@@ -11,7 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import LinearProgress from '@mui/material/LinearProgress'
 import { useAppDispatch, useAppSelector } from './hooks'
 import { TodolistList } from 'features/TodolistList/TodolistList'
-import { Login } from 'features/Login/Login'
+import { Auth } from 'features/Login/Auth'
 import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
 import { RequestStatusT } from 'app/app-slice'
 import { logoutTC, meTC } from 'features/Login/auth-slice'
@@ -59,7 +59,7 @@ export const App = memo(({ demo = false }: AppPropsT) => {
       <Container fixed>
         <Routes>
           <Route path={'/'} element={<TodolistList demo={demo} />} />
-          <Route path={'/login'} element={<Login />} />
+          <Route path={'/login'} element={<Auth />} />
           <Route path={'404'} element={<h1>404: PAGE NOT FOUND</h1>} />
           <Route path={'*'} element={<Navigate to={'404'} />} />
         </Routes>

@@ -3,7 +3,7 @@ import { handleServerAppError, handleServerNetworkError } from 'utils/error-util
 import { AppThunk } from 'app/store'
 import { authApi } from 'api/auth-api'
 import { ResultCodes } from 'api/todolists-api'
-import { LoginDataType } from './Login'
+import { LoginDataType } from 'features/Login/Auth'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { appActions } from 'app/app-slice'
 import { clearData } from 'common/actions/clearData'
