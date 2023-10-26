@@ -1,4 +1,4 @@
-import { authActions, authSlice, AuthStateT } from 'features/Login/auth-slice'
+import { authActions, authSlice, AuthStateT } from 'features/Auth/auth-slice'
 
 let startState: AuthStateT
 

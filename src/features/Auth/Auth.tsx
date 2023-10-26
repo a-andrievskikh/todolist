@@ -8,9 +8,9 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
-import { loginTC } from 'features/Login/auth-slice'
+import { loginTC } from 'features/Auth/auth-slice'
 import { Navigate } from 'react-router-dom'
-import { authSelectors } from 'features/Login/auth-selectors'
+import { authSelectors } from 'features/Auth/auth-selectors'
 
 const validate = (values: FormikErrorType) => {
   const errors: FormikErrorType = {}
