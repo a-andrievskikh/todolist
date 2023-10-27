@@ -1,32 +1,11 @@
 import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 import AddBoxOutlined from '@mui/icons-material/AddBoxOutlined'
-import { KeyboardEvent, ChangeEvent, memo, useState } from 'react'
+import { memo } from 'react'
+import { useItemForm } from 'components/ItemForm/hooks/useItemForm'
 
-export const ItemForm = memo(({ addItem, disabled = false }: ItemFormT) => {
-  const [title, setTitle] = useState<string>('')
-  const [isError, setIsError] = useState<boolean>(false)
-
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.currentTarget.value)
-  }
-
-  const addNewItem = () => {
-    if (title.trim()) {
-      addItem(title.trim())
-      setTitle('')
-    } else {
-      setIsError(true)
-    }
-  }
-
-  const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    !title && setIsError(false)
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      addNewItem()
-    }
-  }
+export const ItemForm = memo(({ addItem, disabled = false }: ItemFormPT) => {
+  const { title, isError, setTitleHandler, addNewItem, onKeyDownHandler } = useItemForm({ addItem })
 
   return (
     <div>
@@ -37,7 +16,7 @@ export const ItemForm = memo(({ addItem, disabled = false }: ItemFormT) => {
         size={'small'}
         error={isError}
         value={title}
-        onChange={onChangeHandler}
+        onChange={setTitleHandler}
         onKeyDown={onKeyDownHandler}
         disabled={disabled}
       />
@@ -57,7 +36,7 @@ export const ItemForm = memo(({ addItem, disabled = false }: ItemFormT) => {
 })
 
 // Types
-export type ItemFormT = {
+export type ItemFormPT = {
   addItem: (title: string) => void
   disabled?: boolean
 }
