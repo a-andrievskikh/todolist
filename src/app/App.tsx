@@ -46,7 +46,7 @@ export const App = memo(({ demo = false }: AppPT) => {
         {progressView}
       </AppBar>
       <Container fixed>
-        <AppRoutes />
+        <AppRoutes demo={demo} />
       </Container>
     </div>
   )
