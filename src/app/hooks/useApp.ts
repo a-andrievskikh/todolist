@@ -1,9 +1,10 @@
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { useAppSelector } from 'app/hooks/useAppSelector'
 import { RequestStatusT } from 'app/app-slice'
-import { isInitializedSelector, isLoggedInSelector, statusSelector } from 'app/app-selectors'
+import { isInitializedSelector, statusSelector } from 'app/app-selectors'
 import { logoutTC, meTC } from 'features/Auth/auth-slice'
 import { useEffect } from 'react'
+import { isLoggedInSelector } from 'features/Auth/auth-selectors'
 
 export const useApp = () => {
   const status = useAppSelector<RequestStatusT>(statusSelector)

@@ -1,3 +1,3 @@
 import { AppRootStateT } from 'app/store'
 
-export const authSelectors = (s: AppRootStateT) => s.auth.isLoggedIn
+export const isLoggedInSelector = (s: AppRootStateT) => s.auth.isLoggedIn
