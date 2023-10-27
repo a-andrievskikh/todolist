@@ -1,4 +1,5 @@
-import { useAppDispatch, useAppSelector } from 'app/hooks'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { useAppSelector } from 'app/hooks/useAppSelector'
 import { RequestStatusT } from 'app/app-slice'
 import { isInitializedSelector, isLoggedInSelector, statusSelector } from 'app/app-selectors'
 import { logoutTC, meTC } from 'features/Auth/auth-slice'
