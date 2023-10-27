@@ -1,8 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { TodolistList } from 'features/TodolistList/TodolistList'
 import { Auth } from 'features/Auth/Auth'
+import { AppPT } from 'app/App'
 
-export const AppRoutes = () => {
+export const AppRoutes = ({ demo = false }: AppPT) => {
   return (
     <Routes>
       <Route path={'/'} element={<TodolistList demo={demo} />} />
