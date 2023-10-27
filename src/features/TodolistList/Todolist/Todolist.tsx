@@ -1,58 +1,18 @@
-import { memo, useCallback } from 'react'
-import { createTaskTC } from 'features/TodolistList/tasks-slice'
+import { memo } from 'react'
 import { EditableSpan } from 'components/EditableSpan/EditableSpan'
 import { ItemForm } from 'components/ItemForm/ItemForm'
 import Button from '@mui/material/Button'
-import {
-  deleteTodolistTC,
-  updateTodolistTC,
-  FilterT,
-  TodolistDomainT,
-  todolistsActions,
-} from 'features/TodolistList/todolists-slice'
+import { TodolistDomainT } from 'features/TodolistList/todolists-slice'
 import { Task } from './Task/Task'
-import { TaskStatuses, TaskT } from 'api/tasks-api'
+import { TaskT } from 'api/tasks-api'
 import { useAppSelector } from 'app/hooks/useAppSelector'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { todolistSelectors } from 'features/TodolistList/Todolist/todolist-selectors'
+import { useTodolist } from 'features/TodolistList/Todolist/hooks/useTodolist'
 
 export const Todolist = memo(({ todolist, demo = false }: TodolistPT) => {
-  const dispatch = useAppDispatch()
+  const { addItem, updateTodolistTitle, updateTodolistFilter, deleteTodolist } = useTodolist(todolist)
 
-  const tasks = useAppSelector<TaskT[]>(s =>
-    todolist.filter === 'active'
-      ? s.tasks[todolist.id].filter(t => t.status === TaskStatuses.New)
-      : todolist.filter === 'completed'
-      ? s.tasks[todolist.id].filter(t => t.status === TaskStatuses.Completed)
-      : s.tasks[todolist.id]
-  )
-
-  const addItem = useCallback(
-    (itemTitle: string) => {
-      dispatch(createTaskTC(todolist.id, itemTitle))
-    },
-    [dispatch, todolist.id]
-  )
-
-  const updateTodolistTitle = useCallback(
-    (newTitle: string) => {
-      dispatch(updateTodolistTC(todolist.id, newTitle))
-    },
-    [dispatch, todolist.id]
-  )
-
-  const updateTodolistFilter = useCallback(
-    (filterValue: FilterT) => {
-      dispatch(todolistsActions.updateTodolistFilter({ todolistID: todolist.id, filter: filterValue }))
-    },
-    [dispatch, todolist.id]
-  )
-
-  const deleteTodolist = useCallback(
-    (todolistID: string) => {
-      dispatch(deleteTodolistTC(todolistID))
-    },
-    [dispatch]
-  )
+  const tasks = useAppSelector<TaskT[]>(todolistSelectors(todolist))
 
   const tasksList = tasks.map(task => {
     return <Task key={task.id} taskID={task.id} title={task.title} status={task.status} todolistID={todolist.id} />
