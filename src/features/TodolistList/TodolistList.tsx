@@ -4,8 +4,9 @@ import { memo, useCallback, useEffect } from 'react'
 import { createTodolistTC, getTodolistsTC, TodolistDomainT } from 'features/TodolistList/todolists-slice'
 import { Todolist } from './Todolist/Todolist'
 import { ItemForm } from 'components/ItemForm/ItemForm'
-import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { Navigate } from 'react-router-dom'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { useAppSelector } from 'app/hooks/useAppSelector'
 
 export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
   const dispatch = useAppDispatch()

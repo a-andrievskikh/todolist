@@ -5,14 +5,15 @@ import { ItemForm } from 'components/ItemForm/ItemForm'
 import Button from '@mui/material/Button'
 import {
   deleteTodolistTC,
+  updateTodolistTC,
   FilterT,
   TodolistDomainT,
   todolistsActions,
-  updateTodolistTC,
 } from 'features/TodolistList/todolists-slice'
 import { Task } from './Task/Task'
 import { TaskStatuses, TaskT } from 'api/tasks-api'
-import { useAppDispatch, useAppSelector } from 'app/hooks'
+import { useAppSelector } from 'app/hooks/useAppSelector'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
 export const Todolist = memo(({ todolist, demo = false }: TodolistPropsT) => {
   const dispatch = useAppDispatch()
