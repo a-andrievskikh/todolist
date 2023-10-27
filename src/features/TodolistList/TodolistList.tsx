@@ -1,29 +1,13 @@
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
-import { memo, useCallback, useEffect } from 'react'
-import { createTodolistTC, getTodolistsTC, TodolistDomainT } from 'features/TodolistList/todolists-slice'
+import { memo } from 'react'
 import { Todolist } from './Todolist/Todolist'
 import { ItemForm } from 'components/ItemForm/ItemForm'
 import { Navigate } from 'react-router-dom'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { useAppSelector } from 'app/hooks/useAppSelector'
+import { useTodolistList } from 'features/TodolistList/hooks/useTodolistList'
 
 export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
-  const dispatch = useAppDispatch()
-  const todolists = useAppSelector<TodolistDomainT[]>(s => s.todolists)
-  const isLoggedIn = useAppSelector<boolean>(s => s.auth.isLoggedIn)
-
-  const addTodolist = useCallback(
-    (todolistTitle: string) => {
-      dispatch(createTodolistTC(todolistTitle))
-    },
-    [dispatch]
-  )
-
-  useEffect(() => {
-    if (demo || !isLoggedIn) return
-    dispatch(getTodolistsTC())
-  }, [demo, isLoggedIn, dispatch])
+  const { todolists, isLoggedIn, addTodolist } = useTodolistList({ demo })
 
   if (!isLoggedIn) return <Navigate to={'/login'} />
 
@@ -50,4 +34,4 @@ export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
 })
 
 // Types
-type TodolistListPropsT = { demo?: boolean }
+export type TodolistListPropsT = { demo?: boolean }
