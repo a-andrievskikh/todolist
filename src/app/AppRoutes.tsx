@@ -1,9 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { TodolistList } from 'features/TodolistList/TodolistList'
 import { Auth } from 'features/Auth/Auth'
-import { AppPT } from 'app/App'
 
-export const AppRoutes = ({ demo = false }: AppPT) => {
+export const AppRoutes = ({ demo = false }: AppRoutesPT) => {
   return (
     <Routes>
       <Route path={'/'} element={<TodolistList demo={demo} />} />
@@ -13,3 +12,6 @@ export const AppRoutes = ({ demo = false }: AppPT) => {
     </Routes>
   )
 }
+
+// Types
+export type AppRoutesPT = { demo?: boolean }
