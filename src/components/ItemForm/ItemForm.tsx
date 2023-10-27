@@ -1,11 +1,18 @@
 import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 import AddBoxOutlined from '@mui/icons-material/AddBoxOutlined'
-import { memo } from 'react'
+import { CSSProperties, memo } from 'react'
 import { useItemForm } from 'components/ItemForm/hooks/useItemForm'
 
 export const ItemForm = memo(({ addItem, disabled = false }: ItemFormPT) => {
   const { title, isError, setTitleHandler, addNewItem, onKeyDownHandler } = useItemForm({ addItem })
+
+  const addBoxOutlinedStyles: CSSProperties = {
+    width: '30px',
+    height: '30px',
+    minWidth: '30px',
+    minHeight: '30px',
+  }
 
   return (
     <div>
@@ -21,15 +28,7 @@ export const ItemForm = memo(({ addItem, disabled = false }: ItemFormPT) => {
         disabled={disabled}
       />
       <IconButton onClick={addNewItem} disabled={disabled}>
-        <AddBoxOutlined
-          style={{
-            width: '30px',
-            height: '30px',
-            minWidth: '30px',
-            minHeight: '30px',
-          }}
-          fontSize={'small'}
-        />
+        <AddBoxOutlined style={addBoxOutlinedStyles} fontSize={'small'} />
       </IconButton>
     </div>
   )
