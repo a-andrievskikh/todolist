@@ -1,5 +1,5 @@
 import './App.css'
-import { memo } from 'react'
+import React, { memo } from 'react'
 import Container from '@mui/material/Container'
 import AppBar from '@mui/material/AppBar'
 import Menu from '@mui/icons-material/Menu'
