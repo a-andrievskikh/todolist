@@ -1,5 +1,5 @@
 import './App.css'
-import { memo, useEffect } from 'react'
+import { memo } from 'react'
 import Container from '@mui/material/Container'
 import AppBar from '@mui/material/AppBar'
 import Menu from '@mui/icons-material/Menu'
@@ -9,36 +9,27 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import LinearProgress from '@mui/material/LinearProgress'
-import { useAppDispatch, useAppSelector } from './hooks'
 import { TodolistList } from 'features/TodolistList/TodolistList'
 import { Auth } from 'features/Auth/Auth'
 import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
-import { RequestStatusT } from 'app/app-slice'
-import { logoutTC, meTC } from 'features/Auth/auth-slice'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { isInitializedSelector, isLoggedInSelector, statusSelector } from 'app/app-selectors'
+import { useApp } from 'app/useApp'
 
-export const App = memo(({ demo = false }: AppPropsT) => {
-  const status = useAppSelector<RequestStatusT>(statusSelector)
-  const isInitialized = useAppSelector<boolean>(isInitializedSelector)
-  const isLoggedIn = useAppSelector<boolean>(isLoggedInSelector)
+export const App = memo(({ demo = false }: AppPT) => {
+  const { status, isInitialized, isLoggedIn, logOut: logOutHandler } = useApp()
 
-  const dispatch = useAppDispatch()
-
-  const logOutHandler = () => dispatch(logoutTC())
-
-  useEffect(() => {
-    dispatch(meTC())
-  }, [dispatch])
+  const progressStyles: React.CSSProperties = { position: 'fixed', top: '30%', textAlign: 'center', width: '100%' }
 
   if (!isInitialized) {
     return (
-      <div style={{ position: 'fixed', top: '30%', textAlign: 'center', width: '100%' }}>
+      <div style={progressStyles}>
         <CircularProgress />
       </div>
     )
   }
+
   console.log('App rendered!')
+
   return (
     <div className='App'>
       <ErrorSnackbar />
@@ -69,4 +60,4 @@ export const App = memo(({ demo = false }: AppPropsT) => {
 })
 
 // Types
-type AppPropsT = { demo?: boolean }
+type AppPT = { demo?: boolean }
