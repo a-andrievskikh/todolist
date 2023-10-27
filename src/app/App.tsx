@@ -15,9 +15,7 @@ import { AppRoutes } from 'app/AppRoutes'
 
 export const App = memo(({ demo = false }: AppPT) => {
   const { status, isInitialized, isLoggedIn, logOut } = useApp()
-
   const progressStyles: React.CSSProperties = { position: 'fixed', top: '30%', textAlign: 'center', width: '100%' }
-
   const progressView = status === 'loading' && <LinearProgress color={'secondary'} />
 
   if (!isInitialized) {
@@ -55,4 +53,4 @@ export const App = memo(({ demo = false }: AppPT) => {
 })
 
 // Types
-type AppPT = { demo?: boolean }
+export type AppPT = { demo?: boolean }
