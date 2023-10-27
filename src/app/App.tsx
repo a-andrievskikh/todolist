@@ -16,7 +16,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { useApp } from 'app/useApp'
 
 export const App = memo(({ demo = false }: AppPT) => {
-  const { status, isInitialized, isLoggedIn, logOut: logOutHandler } = useApp()
+  const { status, isInitialized, isLoggedIn, logOut } = useApp()
 
   const progressStyles: React.CSSProperties = { position: 'fixed', top: '30%', textAlign: 'center', width: '100%' }
 
@@ -40,7 +40,7 @@ export const App = memo(({ demo = false }: AppPT) => {
           </IconButton>
           <Typography variant={'h6'}>TODOLIST</Typography>
           {isLoggedIn && (
-            <Button color={'warning'} onClick={logOutHandler}>
+            <Button color={'warning'} onClick={logOut}>
               Log out
             </Button>
           )}
