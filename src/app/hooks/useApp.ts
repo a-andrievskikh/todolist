@@ -1,8 +1,8 @@
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { useAppSelector } from 'app/hooks/useAppSelector'
-import { RequestStatusT } from 'app/app-slice'
+import { RequestStatusT } from 'app/app-reducer'
 import { isInitializedSelector, statusSelector } from 'app/app-selectors'
-import { logoutTC, meTC } from 'features/Auth/auth-slice'
+import { logoutTC, meTC } from 'features/Auth/auth-reducer'
 import { useEffect } from 'react'
 import { isLoggedInSelector } from 'features/Auth/auth-selectors'
 

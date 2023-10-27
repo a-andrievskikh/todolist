@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 import { ResponseT } from 'api/common-types'
-import { appActions } from 'app/app-slice'
+import { appActions } from 'app/app-reducer'
 
 const errorText = 'Some error occurred'
 

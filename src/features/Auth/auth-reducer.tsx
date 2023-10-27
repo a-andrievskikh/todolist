@@ -4,7 +4,7 @@ import { AppThunk } from 'app/store'
 import { authApi } from 'api/auth-api'
 import { ResultCodes } from 'api/todolists-api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { appActions } from 'app/app-slice'
+import { appActions } from 'app/app-reducer'
 import { clearData } from 'common/actions/clearData'
 import { AuthDataT } from 'features/Auth/hooks/useAuthValidate'
 
@@ -20,7 +20,7 @@ const slice = createSlice({
   },
 })
 
-export const authSlice = slice.reducer
+export const authReducer = slice.reducer
 export const authActions = slice.actions
 
 // Thunks
@@ -85,7 +85,7 @@ export const meTC = (): AppThunk => async dispatch => {
 }
 
 // Types
-export type AuthStateT = ReturnType<typeof authSlice>
+export type AuthStateT = ReturnType<typeof authReducer>
 
 type ErrorType = {
   statusCode: 0

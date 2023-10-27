@@ -1,6 +1,6 @@
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { ChangeEvent, useCallback } from 'react'
-import { deleteTaskTC, updateTaskTC } from 'features/TodolistList/tasks-slice'
+import { deleteTaskTC, updateTaskTC } from 'features/TodolistList/tasks-reducer'
 import { TaskStatuses } from 'api/tasks-api'
 
 export const useTask = (todolistID: string, taskID: string, status: TaskStatuses) => {

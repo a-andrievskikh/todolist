@@ -4,10 +4,10 @@ import {
   TodolistDomainT,
   todolistsActions,
   updateTodolistTC,
-} from 'features/TodolistList/todolists-slice'
+} from 'features/TodolistList/todolists-reducer'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { useCallback } from 'react'
-import { createTaskTC } from 'features/TodolistList/tasks-slice'
+import { createTaskTC } from 'features/TodolistList/tasks-reducer'
 
 export const useTodolist = (todolist: TodolistDomainT) => {
   const dispatch = useAppDispatch()

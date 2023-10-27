@@ -1,7 +1,7 @@
-import { todolistsActions } from 'features/TodolistList/todolists-slice'
+import { todolistsActions } from 'features/TodolistList/todolists-reducer'
 import { TaskPriorities, tasksAPI, TaskStatuses, TaskT } from 'api/tasks-api'
 import { AppRootStateT, AppThunk } from 'app/store'
-import { appActions } from 'app/app-slice'
+import { appActions } from 'app/app-reducer'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import { ResultCodes } from 'api/todolists-api'
 import axios from 'axios'
@@ -48,7 +48,7 @@ const slice = createSlice({
   },
 })
 
-export const tasksSlice = slice.reducer
+export const tasksReducer = slice.reducer
 export const tasksActions = slice.actions
 
 // Thunks

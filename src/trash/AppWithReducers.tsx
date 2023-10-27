@@ -11,9 +11,9 @@ import {
   changeTodolistFilterAC,
   changeTodolistTitleAC,
   removeTodolistAC,
-  todolistsSlice,
+  todolistsReducer,
 } from './state/todolists-reducer'
-import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksSlice } from './state/tasks-reducer'
+import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer } from './state/tasks-reducer'
 
 export type TaskType = {
   id: string
@@ -38,12 +38,12 @@ export const AppWithReducers = () => {
   const todolistID1 = v1()
   const todolistID2 = v1()
 
-  const [todolists, dispatchToTodolistReducer] = useReducer(todolistsSlice, [
+  const [todolists, dispatchToTodolistReducer] = useReducer(todolistsReducer, [
     { id: todolistID1, title: 'What to learn', filter: 'all' },
     { id: todolistID2, title: 'What to buy', filter: 'all' },
   ])
 
-  const [tasks, dispatchToTasksReducer] = useReducer(tasksSlice, {
+  const [tasks, dispatchToTasksReducer] = useReducer(tasksReducer, {
     [todolistID1]: [
       { id: v1(), title: 'HTML&CSS', isDone: true },
       { id: v1(), title: 'JS', isDone: true },

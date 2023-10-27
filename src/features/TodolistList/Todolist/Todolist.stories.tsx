@@ -3,7 +3,7 @@ import { Todolist } from './Todolist'
 import { ReduxStoreProviderDecorator } from 'stories/ReduxStoreProviderDecorator'
 import { useSelector } from 'react-redux'
 import { AppRootStateT } from 'app/store'
-import { TodolistDomainT } from 'features/TodolistList/todolists-slice'
+import { TodolistDomainT } from 'features/TodolistList/todolists-reducer'
 
 const meta: Meta<typeof Todolist> = {
   title: 'Todolists/Todolist',

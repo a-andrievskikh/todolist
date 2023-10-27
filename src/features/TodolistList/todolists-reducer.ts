@@ -1,9 +1,9 @@
 import { ResultCodes, todolistsAPI, TodolistType } from 'api/todolists-api'
 import { AppThunk } from 'app/store'
-import { appActions, RequestStatusT } from 'app/app-slice'
+import { appActions, RequestStatusT } from 'app/app-reducer'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import axios from 'axios'
-import { getTasksTC } from 'features/TodolistList/tasks-slice'
+import { getTasksTC } from 'features/TodolistList/tasks-reducer'
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { clearData } from 'common/actions/clearData'
 
@@ -46,7 +46,7 @@ const slice = createSlice({
   },
 })
 
-export const todolistsSlice = slice.reducer
+export const todolistsReducer = slice.reducer
 export const todolistsActions = slice.actions
 
 // Thunks

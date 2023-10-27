@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import { authTC } from 'features/Auth/auth-slice'
+import { authTC } from 'features/Auth/auth-reducer'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
 const validate = (values: FormikErrorT) => {
