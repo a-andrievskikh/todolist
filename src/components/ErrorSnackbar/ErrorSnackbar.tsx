@@ -1,7 +1,8 @@
 import { forwardRef, SyntheticEvent } from 'react'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert, { AlertProps } from '@mui/material/Alert'
-import { useAppDispatch, useAppSelector } from 'app/hooks'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { useAppSelector } from 'app/hooks/useAppSelector'
 import { appActions } from 'app/app-slice'
 import { errorSnackbarSelectors } from 'components/ErrorSnackbar/error-snackbar-selectors'
 
