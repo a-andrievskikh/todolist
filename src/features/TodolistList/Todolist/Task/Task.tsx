@@ -5,7 +5,7 @@ import { deleteTaskTC, updateTaskTC } from 'features/TodolistList/tasks-slice'
 import { EditableSpan } from 'components/EditableSpan/EditableSpan'
 import { ChangeEvent, memo, useCallback } from 'react'
 import { TaskStatuses } from 'api/tasks-api'
-import { useAppDispatch } from 'app/hooks'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
 export const Task = memo(({ todolistID, taskID, title, status }: TaskPropsT) => {
   const dispatch = useAppDispatch()
