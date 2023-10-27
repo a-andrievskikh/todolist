@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { ItemForm, ItemFormT } from './ItemForm'
+import { ItemForm, ItemFormPT } from './ItemForm'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { IconButton, TextField } from '@mui/material'
 import { AddBoxOutlined } from '@mui/icons-material'
@@ -21,7 +21,7 @@ type Story = StoryObj<typeof ItemForm>
 
 export const ItemFormStory: Story = {}
 
-const ItemFormWithError = (args: ItemFormT) => {
+const ItemFormWithError = (args: ItemFormPT) => {
   const [title, setTitle] = useState<string>('')
   const [isError, setIsError] = useState<boolean>(true)
 
@@ -75,7 +75,7 @@ export const ItemFormWithErrorStory: Story = {
   render: args => <ItemFormWithError addItem={args.addItem} disabled={args.disabled} />,
 }
 
-const ItemFormDisabled = (args: ItemFormT) => {
+const ItemFormDisabled = (args: ItemFormPT) => {
   const [title, setTitle] = useState<string>('')
   const [isError, setIsError] = useState<boolean>(false)
 
