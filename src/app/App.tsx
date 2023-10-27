@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import LinearProgress from '@mui/material/LinearProgress'
 import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
-import { useApp } from 'app/useApp'
+import { useApp } from 'app/hooks/useApp'
 import { AppRoutes } from 'app/AppRoutes'
 
 export const App = memo(({ demo = false }: AppPT) => {
