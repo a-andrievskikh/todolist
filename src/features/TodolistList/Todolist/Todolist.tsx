@@ -15,7 +15,7 @@ import { TaskStatuses, TaskT } from 'api/tasks-api'
 import { useAppSelector } from 'app/hooks/useAppSelector'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
-export const Todolist = memo(({ todolist, demo = false }: TodolistPropsT) => {
+export const Todolist = memo(({ todolist, demo = false }: TodolistPT) => {
   const dispatch = useAppDispatch()
 
   const tasks = useAppSelector<TaskT[]>(s =>
@@ -99,7 +99,7 @@ export const Todolist = memo(({ todolist, demo = false }: TodolistPropsT) => {
 })
 
 // Types
-export type TodolistPropsT = {
+export type TodolistPT = {
   todolist: TodolistDomainT
   demo?: boolean
 }
