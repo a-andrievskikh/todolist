@@ -7,8 +7,8 @@ import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { Navigate } from 'react-router-dom'
-import { useAuthValidate } from 'features/Auth/useAuthValidate'
-import { useAuth } from 'features/Auth/useAuth'
+import { useAuthValidate } from 'features/Auth/hooks/useAuthValidate'
+import { useAuth } from 'features/Auth/hooks/useAuth'
 
 export const Auth = () => {
   const { formik, isButtonDisabled } = useAuthValidate()

@@ -1,6 +1,6 @@
 import { instance } from './basic'
 import { ResponseT } from './common-types'
-import { AuthDataT } from 'features/Auth/useAuthValidate'
+import { AuthDataT } from 'features/Auth/hooks/useAuthValidate'
 
 export const authApi = {
   me() {

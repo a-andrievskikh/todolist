@@ -6,7 +6,7 @@ import { ResultCodes } from 'api/todolists-api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { appActions } from 'app/app-slice'
 import { clearData } from 'common/actions/clearData'
-import { AuthDataT } from 'features/Auth/useAuthValidate'
+import { AuthDataT } from 'features/Auth/hooks/useAuthValidate'
 
 const slice = createSlice({
   name: 'auth',
