@@ -3,7 +3,7 @@ import { AppThunk } from 'app/store'
 import { appActions, RequestStatusT } from 'app/app-reducer'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
 import axios from 'axios'
-import { getTasksTC } from 'features/TodolistList/tasks-reducer'
+import { tasksThunks } from 'features/TodolistList/tasks-reducer'
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { clearData } from 'common/actions/clearData'
 
@@ -55,7 +55,7 @@ export const getTodolistsTC = (): AppThunk => async dispatch => {
     const res = await todolistsAPI.getTodolists()
     dispatch(todolistsActions.setTodolists({ todolists: res.data }))
     dispatch(appActions.setAppStatus({ status: 'succeeded' }))
-    res.data.forEach(tl => dispatch(getTasksTC(tl.id)))
+    res.data.forEach(tl => dispatch(tasksThunks.getTasks(tl.id)))
   } catch (e) {
     if (axios.isAxiosError<ErrorT>(e)) {
       handleServerNetworkError(dispatch, e)
