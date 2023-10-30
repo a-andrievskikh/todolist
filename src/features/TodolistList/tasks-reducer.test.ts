@@ -1,4 +1,4 @@
-import { tasksActions, tasksReducer, TasksStateT } from 'features/TodolistList/tasks-reducer'
+import { tasksActions, tasksReducer, TasksStateT, tasksThunks } from 'features/TodolistList/tasks-reducer'
 import { todolistsActions } from 'features/TodolistList/todolists-reducer'
 import { v1 } from 'uuid'
 import { TaskPriorities, TaskStatuses } from 'api/tasks-api'
@@ -89,6 +89,18 @@ beforeEach(() => {
       },
     ],
   }
+})
+
+test('tasks should be added to todolist', () => {
+  const action = tasksThunks.getTasks.fulfilled(
+    { todolistID: todolistID1, tasks: startState[todolistID1] },
+    'requestID',
+    todolistID1
+  )
+  const endState = tasksReducer({ [todolistID1]: [], [todolistID2]: [] }, action)
+
+  expect(endState[todolistID1].length).toBe(3)
+  expect(endState[todolistID2].length).toBe(0)
 })
 
 test('correct task should be removed', () => {
