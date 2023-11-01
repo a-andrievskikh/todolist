@@ -1,4 +1,4 @@
-import { ResultCodes, todolistsAPI, TodolistType } from 'api/todolists-api'
+import { ResultCodes, todolistsAPI, TodolistT } from 'api/todolists-api'
 import { AppThunk } from 'app/store'
 import { appActions, RequestStatusT } from 'app/app-reducer'
 import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
@@ -11,7 +11,7 @@ const slice = createSlice({
   name: 'todolists',
   initialState: [] as TodolistDomainT[],
   reducers: {
-    setTodolists: (state, action: PayloadAction<{ todolists: TodolistType[] }>) => {
+    setTodolists: (state, action: PayloadAction<{ todolists: TodolistT[] }>) => {
       // return action.payload.todolists.map(tl => ({ ...tl, filter: 'all', entityStatus: 'idle' }))
       action.payload.todolists.forEach(tl => {
         state.push({ ...tl, filter: 'all', entityStatus: 'idle' })
@@ -22,7 +22,7 @@ const slice = createSlice({
       const index = state.findIndex(tl => tl.id === action.payload.todolistID)
       if (index !== -1) state.splice(index, 1)
     },
-    createTodolist: (state, action: PayloadAction<{ todolist: TodolistType }>) => {
+    createTodolist: (state, action: PayloadAction<{ todolist: TodolistT }>) => {
       state.unshift({ ...action.payload.todolist, filter: 'all', entityStatus: 'idle' })
     },
     updateTodolistTitle: (state, action: PayloadAction<{ todolistID: string; title: string }>) => {
@@ -124,7 +124,7 @@ export const updateTodolistTC =
 
 // Types
 export type FilterT = 'all' | 'active' | 'completed'
-export type TodolistDomainT = TodolistType & {
+export type TodolistDomainT = TodolistT & {
   filter: FilterT
   entityStatus: RequestStatusT
 }
