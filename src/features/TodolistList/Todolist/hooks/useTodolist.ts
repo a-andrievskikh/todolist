@@ -1,16 +1,17 @@
-import {
-  deleteTodolistTC,
-  FilterT,
-  TodolistDomainT,
-  todolistsActions,
-  updateTodolistTC,
-} from 'features/TodolistList/todolists-reducer'
+import { deleteTodolistTC, FilterT, todolistsActions, updateTodolistTC } from 'features/TodolistList/todolists-reducer'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { useCallback } from 'react'
-import { createTaskTC } from 'features/TodolistList/tasks-reducer'
+import { useCallback, useEffect } from 'react'
+import { createTaskTC, tasksThunks } from 'features/TodolistList/tasks-reducer'
+import { TodolistPT } from 'features/TodolistList/Todolist/Todolist'
 
-export const useTodolist = (todolist: TodolistDomainT) => {
+export const useTodolist = ({ todolist, demo }: TodolistPT) => {
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (demo) return
+    dispatch(tasksThunks.getTasks(todolist.id))
+  }, [dispatch, demo, todolist.id])
+
   const addItem = useCallback(
     (itemTitle: string) => {
       dispatch(createTaskTC(todolist.id, itemTitle))
