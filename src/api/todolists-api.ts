@@ -4,10 +4,10 @@ import { ResponseT } from './common-types'
 // API
 export const todolistsAPI = {
   getTodolists() {
-    return instance.get<TodolistType[]>('todo-lists/')
+    return instance.get<TodolistT[]>('todo-lists/')
   },
   createTodolist(title: string) {
-    return instance.post<ResponseT<{ item: TodolistType }>>('todo-lists/', { title })
+    return instance.post<ResponseT<{ item: TodolistT }>>('todo-lists/', { title })
   },
   deleteTodolist(todolistID: string) {
     return instance.delete<ResponseT>(`todo-lists/${todolistID}`)
@@ -18,7 +18,7 @@ export const todolistsAPI = {
 }
 
 // Types
-export type TodolistType = {
+export type TodolistT = {
   id: string
   title: string
   addedDate: string
