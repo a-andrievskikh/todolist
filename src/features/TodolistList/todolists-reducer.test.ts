@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 import { FilterT, TodolistDomainT, todolistsActions, todolistsReducer } from 'features/TodolistList/todolists-reducer'
-import { TodolistType } from 'api/todolists-api'
+import { TodolistT } from 'api/todolists-api'
 import { RequestStatusT } from 'app/app-reducer'
 
 let todolistID1: string
@@ -40,7 +40,7 @@ test('correct todolist should be removed', () => {
 })
 
 test('correct todolist should be added', () => {
-  const todolist: TodolistType = {
+  const todolist: TodolistT = {
     id: 'new id',
     title: 'New Todolist',
     order: 0,
