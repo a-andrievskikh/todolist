@@ -10,7 +10,7 @@ import { todolistSelectors } from 'features/TodolistList/Todolist/todolist-selec
 import { useTodolist } from 'features/TodolistList/Todolist/hooks/useTodolist'
 
 export const Todolist = memo(({ todolist, demo = false }: TodolistPT) => {
-  const { addItem, updateTodolistTitle, updateTodolistFilter, deleteTodolist } = useTodolist(todolist)
+  const { addItem, updateTodolistTitle, updateTodolistFilter, deleteTodolist } = useTodolist({ todolist, demo })
 
   const tasks = useAppSelector<TaskT[]>(todolistSelectors(todolist))
 
