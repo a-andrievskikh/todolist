@@ -1,4 +1,4 @@
-import { tasksActions, tasksReducer, TasksStateT, tasksThunks } from 'features/TodolistList/tasks-reducer'
+import { tasksReducer, TasksStateT, tasksThunks } from 'features/TodolistList/tasks-reducer'
 import { todolistsActions } from 'features/TodolistList/todolists-reducer'
 import { v1 } from 'uuid'
 import { TaskPriorities, TaskStatuses } from 'api/tasks-api'
@@ -92,11 +92,7 @@ beforeEach(() => {
 })
 
 test('tasks should be added to todolist', () => {
-  const action = tasksThunks.getTasks.fulfilled(
-    { todolistID: todolistID1, tasks: startState[todolistID1] },
-    'requestID',
-    todolistID1
-  )
+  const action = tasksThunks.getTasks.fulfilled({ todolistID: todolistID1, tasks: startState[todolistID1] }, '', '')
   const endState = tasksReducer({ [todolistID1]: [], [todolistID2]: [] }, action)
 
   expect(endState[todolistID1].length).toBe(3)
@@ -104,7 +100,10 @@ test('tasks should be added to todolist', () => {
 })
 
 test('correct task should be removed', () => {
-  const action = tasksActions.deleteTask({ todolistID: todolistID2, taskID: '2' })
+  const action = tasksThunks.deleteTask.fulfilled({ arg: { todolistID: todolistID2, taskID: '2' } }, '', {
+    todolistID: todolistID2,
+    taskID: '2',
+  })
   const endState = tasksReducer(startState, action)
 
   expect(endState[todolistID1].length).toBe(3)
@@ -179,31 +178,43 @@ test('correct task should be removed', () => {
 })
 
 test('correct task should be added to correct array', () => {
-  const action = tasksActions.createTask({
-    task: {
-      todoListId: todolistID2,
-      id: 'id exist',
-      title: 'juice',
-      status: TaskStatuses.New,
-      description: '',
-      priority: TaskPriorities.Low,
-      startDate: '',
-      deadline: '',
-      order: 0,
-      addedDate: '',
-    },
-  })
+  const newTitle = 'juice'
+  const task = {
+    todoListId: todolistID2,
+    id: 'id exist',
+    title: newTitle,
+    status: TaskStatuses.New,
+    description: '',
+    priority: TaskPriorities.Low,
+    startDate: '',
+    deadline: '',
+    order: 0,
+    addedDate: '',
+  }
+  const action = tasksThunks.createTask.fulfilled({ task }, '', { todolistID: task.todoListId, title: task.title })
   const endState = tasksReducer(startState, action)
 
   expect(endState[todolistID1].length).toBe(3)
   expect(endState[todolistID2].length).toBe(4)
   expect(endState[todolistID2][0].id).toBeDefined()
-  expect(endState[todolistID2][0].title).toBe('juice')
+  expect(endState[todolistID2][0].title).toBe(newTitle)
   expect(endState[todolistID2][0].status).toBe(TaskStatuses.New)
 })
 
 test('status of specified task should be changed', () => {
-  const action = tasksActions.updateTask({ todolistID: todolistID2, taskID: '2', model: { status: TaskStatuses.New } })
+  const action = tasksThunks.updateTask.fulfilled(
+    {
+      todolistID: todolistID2,
+      taskID: '2',
+      model: { status: TaskStatuses.New },
+    },
+    '',
+    {
+      todolistID: todolistID2,
+      taskID: '2',
+      model: { status: TaskStatuses.New },
+    }
+  )
   const endState = tasksReducer(startState, action)
 
   expect(endState[todolistID1][1].status).toBe(TaskStatuses.Completed)
@@ -211,7 +222,11 @@ test('status of specified task should be changed', () => {
 })
 
 test('title of specified task should be changed', () => {
-  const action = tasksActions.updateTask({ todolistID: todolistID2, taskID: '2', model: { title: 'apple' } })
+  const action = tasksThunks.updateTask.fulfilled(
+    { todolistID: todolistID2, taskID: '2', model: { title: 'apple' } },
+    '',
+    { todolistID: todolistID2, taskID: '2', model: { title: 'apple' } }
+  )
   const endState = tasksReducer(startState, action)
 
   expect(endState[todolistID1][1].title).toBe('JS')
