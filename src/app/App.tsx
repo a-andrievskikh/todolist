@@ -9,9 +9,9 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import LinearProgress from '@mui/material/LinearProgress'
-import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
 import { useApp } from 'app/hooks/useApp'
 import { AppRoutes } from 'app/AppRoutes'
+import { ErrorSnackbar } from 'common/components'
 
 export const App = memo(({ demo = false }: AppPT) => {
   const { status, isInitialized, isLoggedIn, logOut } = useApp()
