@@ -1,6 +1,6 @@
 import TextField from '@mui/material/TextField'
 import { memo } from 'react'
-import { useEditableSpan } from 'components/EditableSpan/hooks/useEditableSpan'
+import { useEditableSpan } from 'common/components/EditableSpan/hooks/useEditableSpan'
 
 export const EditableSpan = memo(({ value, onChangeTitle }: EditableSpanPT) => {
   const { editMode, title, activateViewMode, activateEditMode, setTitleHandler } = useEditableSpan({
