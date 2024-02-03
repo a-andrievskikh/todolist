@@ -9,6 +9,7 @@ import Button from '@mui/material/Button'
 import { Navigate } from 'react-router-dom'
 import { useAuthValidate } from 'features/Auth/hooks/useAuthValidate'
 import { useAuth } from 'features/Auth/hooks/useAuth'
+import s from './Auth.module.css'
 
 export const Auth = () => {
   const { formik, isButtonDisabled } = useAuthValidate()
@@ -24,7 +25,11 @@ export const Auth = () => {
             <FormLabel>
               <p>
                 To log in get registered
-                <a href={'https://social-network.samuraijs.com/'} target={'_blank'} rel='noreferrer'>
+                <a
+                  href={'https://social-network.samuraijs.com/'}
+                  target={'_blank'}
+                  rel='noreferrer'
+                >
                   {' '}
                   here
                 </a>
@@ -35,14 +40,29 @@ export const Auth = () => {
             </FormLabel>
             <FormGroup>
               <TextField label='Email' margin='normal' {...formik.getFieldProps('email')} />
-              {formik.touched.email && formik.errors.email && <div style={{ color: 'red' }}>{formik.errors.email}</div>}
-              <TextField type='password' label='Password' margin='normal' {...formik.getFieldProps('password')} />
+              {formik.touched.email && formik.errors.email && (
+                <div className={s.error}>{formik.errors.email}</div>
+              )}
+              <TextField
+                type='password'
+                label='Password'
+                margin='normal'
+                {...formik.getFieldProps('password')}
+              />
               {formik.touched.password && formik.errors.password && (
-                <div style={{ color: 'red' }}>{formik.errors.password}</div>
+                <div className={s.error}>{formik.errors.password}</div>
               )}
 
-              <FormControlLabel label={'Remember me'} control={<Checkbox {...formik.getFieldProps('rememberMe')} />} />
-              <Button type={'submit'} variant={'contained'} color={'primary'} disabled={isButtonDisabled}>
+              <FormControlLabel
+                label={'Remember me'}
+                control={<Checkbox {...formik.getFieldProps('rememberMe')} />}
+              />
+              <Button
+                type={'submit'}
+                variant={'contained'}
+                color={'primary'}
+                disabled={isButtonDisabled}
+              >
                 Login
               </Button>
             </FormGroup>
