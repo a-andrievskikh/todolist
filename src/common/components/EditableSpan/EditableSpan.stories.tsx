@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { EditableSpan } from './EditableSpan'
+import { EditableSpan } from 'common/components/index'
 
 const meta: Meta<typeof EditableSpan> = {
   title: 'Todolists/EditableSpan',
