@@ -44,7 +44,7 @@ export const App = memo(({ demo = false }: AppPT) => {
           <Typography variant={'h6'}>TODOLIST</Typography>
           {isLoggedIn && (
             <Button color={'warning'} onClick={logOut}>
-              Log out
+              Logout
             </Button>
           )}
         </Toolbar>
