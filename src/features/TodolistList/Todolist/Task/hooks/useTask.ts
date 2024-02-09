@@ -1,20 +1,24 @@
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { ChangeEvent, useCallback } from 'react'
-import { deleteTaskTC, updateTaskTC } from 'features/TodolistList/tasks-reducer'
-import { TaskStatuses } from 'api/tasks-api'
+import { tasksThunks } from 'features/TodolistList/tasks-reducer'
+import { TaskStatuses } from 'common/enums/enums'
 
 export const useTask = (todolistID: string, taskID: string, status: TaskStatuses) => {
   const dispatch = useAppDispatch()
 
   const deleteTask = useCallback(() => {
-    dispatch(deleteTaskTC(todolistID, taskID))
+    dispatch(tasksThunks.deleteTask({ todolistID, taskID }))
   }, [dispatch, todolistID, taskID])
 
   const updateTaskStatus = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       dispatch(
-        updateTaskTC(todolistID, taskID, {
-          status: e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New,
+        tasksThunks.updateTask({
+          todolistID,
+          taskID,
+          model: {
+            status: e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New,
+          },
         })
       )
     },
@@ -23,7 +27,7 @@ export const useTask = (todolistID: string, taskID: string, status: TaskStatuses
 
   const updateTaskTitle = useCallback(
     (taskTitle: string) => {
-      dispatch(updateTaskTC(todolistID, taskID, { title: taskTitle }))
+      dispatch(tasksThunks.updateTask({ todolistID, taskID, model: { title: taskTitle } }))
     },
     [dispatch, todolistID, taskID]
   )
