@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react'
-import { EditableSpanPT } from 'components/EditableSpan/EditableSpan'
+import { EditableSpanPT } from 'common/components/EditableSpan/EditableSpan'
 
 export const useEditableSpan = ({ value, onChangeTitle }: EditableSpanPT) => {
   const [editMode, setEditMode] = useState<boolean>(false)
