@@ -6,8 +6,8 @@ import { tasksReducer } from 'features/TodolistList/tasks-reducer'
 import { todolistsReducer } from 'features/TodolistList/todolists-reducer'
 import { appReducer } from 'app/app-reducer'
 import { AppRootStateT } from 'app/store'
-import { TaskStatuses } from 'api/tasks-api'
 import thunk from 'redux-thunk'
+import { TaskStatuses } from 'common/enums/enums'
 
 export const rootReducer = combineReducers({
   tasks: tasksReducer,
