@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
-import { authTC } from 'features/Auth/auth-reducer'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { authThunks } from 'features/Auth/model/auth-reducer'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { AuthDataT } from 'features/Auth/api/auth-api-types'
 
 const validate = (values: FormikErrorT) => {
   const errors: FormikErrorT = {}
@@ -31,12 +32,13 @@ export const useAuthValidate = () => {
     } as AuthDataT,
     validate,
     onSubmit: () => {
-      dispatch(authTC(formik.values))
+      dispatch(authThunks.login(formik.values))
       formik.resetForm()
     },
   })
 
-  const isButtonDisabled = !!Object.values(formik.errors).length || !formik.values.email || !formik.values.password
+  const isButtonDisabled =
+    !!Object.values(formik.errors).length || !formik.values.email || !formik.values.password
 
   return { formik, isButtonDisabled }
 }
@@ -45,9 +47,4 @@ export const useAuthValidate = () => {
 type FormikErrorT = {
   email?: string
   password?: string
-}
-export type AuthDataT = {
-  email: string
-  password: string
-  rememberMe: boolean
 }
