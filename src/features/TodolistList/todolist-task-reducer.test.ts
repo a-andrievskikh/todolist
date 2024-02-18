@@ -1,6 +1,10 @@
 import { tasksReducer, TasksStateT } from 'features/TodolistList/tasks-reducer'
-import { TodolistDomainT, todolistsActions, todolistsReducer } from 'features/TodolistList/todolists-reducer'
-import { TodolistT } from 'api/todolists-api'
+import {
+  TodolistDomainT,
+  todolistsReducer,
+  todolistsThunks,
+} from 'features/TodolistList/todolists-reducer'
+import { TodolistT } from 'features/TodolistList/todolist-types'
 
 test('ids should be equals', () => {
   const startTasksState: TasksStateT = {}
@@ -13,7 +17,7 @@ test('ids should be equals', () => {
     addedDate: '',
   }
 
-  const action = todolistsActions.createTodolist({ todolist })
+  const action = todolistsThunks.createTodolist.fulfilled({ todolist }, '', todolist.title)
 
   const endTasksState = tasksReducer(startTasksState, action)
   const endTodolistsState = todolistsReducer(startTodolistsState, action)
