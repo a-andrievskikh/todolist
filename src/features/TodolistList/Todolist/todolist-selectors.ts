@@ -1,6 +1,6 @@
-import { TaskStatuses } from 'api/tasks-api'
 import { AppRootStateT } from 'app/store'
 import { TodolistDomainT } from 'features/TodolistList/todolists-reducer'
+import { TaskStatuses } from 'common/enums/enums'
 
 export const todolistSelectors = (todolist: TodolistDomainT) => (s: AppRootStateT) => {
   return todolist.filter === 'active'
