@@ -1,10 +1,10 @@
 import Delete from '@mui/icons-material/Delete'
 import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
-import { EditableSpan } from 'components/EditableSpan/EditableSpan'
 import { memo } from 'react'
-import { TaskStatuses } from 'api/tasks-api'
 import { useTask } from 'features/TodolistList/Todolist/Task/hooks/useTask'
+import { EditableSpan } from 'common/components'
+import { TaskStatuses } from 'common/enums/enums'
 
 export const Task = memo(({ todolistID, taskID, title, status }: TaskPT) => {
   const { deleteTask, updateTaskStatus, updateTaskTitle, listItemClassName } = useTask(todolistID, taskID, status)
