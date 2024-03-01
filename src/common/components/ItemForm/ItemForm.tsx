@@ -2,7 +2,7 @@ import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 import AddBoxOutlined from '@mui/icons-material/AddBoxOutlined'
 import { CSSProperties, memo } from 'react'
-import { useItemForm } from 'components/ItemForm/hooks/useItemForm'
+import { useItemForm } from 'common/components/ItemForm/hooks/useItemForm'
 
 export const ItemForm = memo(({ addItem, disabled = false }: ItemFormPT) => {
   const { title, isError, setTitleHandler, addNewItem, onKeyDownHandler } = useItemForm({ addItem })
