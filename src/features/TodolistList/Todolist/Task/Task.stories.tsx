@@ -3,7 +3,7 @@ import { Task } from './Task'
 import { ReduxStoreProviderDecorator, todolistID1 } from 'stories/ReduxStoreProviderDecorator'
 import { useSelector } from 'react-redux'
 import { AppRootStateT } from 'app/store'
-import { TaskT } from 'api/tasks-api'
+import { TaskT } from 'features/TodolistList/Todolist/task-types'
 
 const meta: Meta<typeof Task> = {
   title: 'Todolists/Task',
