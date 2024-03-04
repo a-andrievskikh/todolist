@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { todolistsAPI } from 'api/todolists-api'
+import { todolistsAPI } from 'features/TodolistList/todolists-api'
 
 export default {
   title: 'API/todolists',
@@ -20,10 +20,10 @@ export const GetTodolists = () => {
 
 export const CreateTodolist = () => {
   const [state, setState] = useState<any>(null)
-  const [todolistTitle, setTodolistTitle] = useState<string>('')
+  const [todolistTitle, getTodolistsTitle] = useState<string>('')
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodolistTitle(e.currentTarget.value)
+    getTodolistsTitle(e.currentTarget.value)
   }
   const onClickHandler = () => {
     todolistsAPI.createTodolist(todolistTitle).then(res => setState(res.data))
@@ -40,10 +40,10 @@ export const CreateTodolist = () => {
 
 export const DeleteTodolist = () => {
   const [state, setState] = useState<any>(null)
-  const [todolistID, setTodolistID] = useState<string>('')
+  const [todolistID, getTodolistsID] = useState<string>('')
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodolistID(e.currentTarget.value)
+    getTodolistsID(e.currentTarget.value)
   }
   const onClickHandler = () => {
     todolistsAPI.deleteTodolist(todolistID).then(res => setState(res.data))
@@ -60,15 +60,15 @@ export const DeleteTodolist = () => {
 
 export const UpdateTodolistTitle = () => {
   const [state, setState] = useState<any>(null)
-  const [todolistID, setTodolistID] = useState<string>('')
-  const [todolistTitle, setTodolistTitle] = useState<string>('')
+  const [todolistID, getTodolistsID] = useState<string>('')
+  const [todolistTitle, getTodolistsTitle] = useState<string>('')
 
   const onChangeIDHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodolistID(e.currentTarget.value)
+    getTodolistsID(e.currentTarget.value)
   }
 
   const onChangeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodolistTitle(e.currentTarget.value)
+    getTodolistsTitle(e.currentTarget.value)
   }
   const onClickHandler = () => {
     todolistsAPI.updateTodolistTitle(todolistID, todolistTitle).then(res => setState(res.data))
@@ -77,11 +77,7 @@ export const UpdateTodolistTitle = () => {
   return (
     <>
       <input value={todolistID} onChange={onChangeIDHandler} placeholder={'Add Todolist ID'} />
-      <input
-        value={todolistTitle}
-        onChange={onChangeTitleHandler}
-        placeholder={'Add Todolist Title'}
-      />
+      <input value={todolistTitle} onChange={onChangeTitleHandler} placeholder={'Add Todolist Title'} />
       <button onClick={onClickHandler}>Update Todolist Title</button>
       <div>{JSON.stringify(state)}</div>
     </>
