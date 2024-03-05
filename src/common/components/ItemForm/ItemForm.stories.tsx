@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { ItemForm, ItemFormPT } from './ItemForm'
+import { ItemForm, ItemFormPT } from 'common/components/ItemForm/ItemForm'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { IconButton, TextField } from '@mui/material'
 import { AddBoxOutlined } from '@mui/icons-material'
