@@ -2,8 +2,8 @@ import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { memo } from 'react'
 import { Todolist } from './Todolist/Todolist'
-import { ItemForm } from 'components/ItemForm/ItemForm'
 import { Navigate } from 'react-router-dom'
+import { ItemForm } from 'common/components'
 import { useTodolistList } from 'features/TodolistList/hooks/useTodolistList'
 
 export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
