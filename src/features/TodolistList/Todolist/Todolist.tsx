@@ -1,13 +1,12 @@
 import { memo } from 'react'
-import { EditableSpan } from 'components/EditableSpan/EditableSpan'
-import { ItemForm } from 'components/ItemForm/ItemForm'
+import { EditableSpan, ItemForm } from 'common/components'
 import Button from '@mui/material/Button'
 import { TodolistDomainT } from 'features/TodolistList/todolists-reducer'
 import { Task } from './Task/Task'
-import { TaskT } from 'api/tasks-api'
-import { useAppSelector } from 'app/hooks/useAppSelector'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 import { todolistSelectors } from 'features/TodolistList/Todolist/todolist-selectors'
 import { useTodolist } from 'features/TodolistList/Todolist/hooks/useTodolist'
+import { TaskT } from 'features/TodolistList/Todolist/task-types'
 
 export const Todolist = memo(({ todolist, demo = false }: TodolistPT) => {
   const { addItem, updateTodolistTitle, updateTodolistFilter, deleteTodolist } = useTodolist({ todolist, demo })
