@@ -66,30 +66,30 @@ export const App = () => {
     }
   }
 
-  const [todolists, setTodolists] = useState<TodolistType[]>([
+  const [todolists, getTodolists] = useState<TodolistType[]>([
     { id: todolistID1, title: 'What to learn', filter: 'all' },
     { id: todolistID2, title: 'What to buy', filter: 'all' },
   ])
   const addTodolist = (taskTitle: string) => {
     const todolist: TodolistType = { id: v1(), title: taskTitle, filter: 'all' }
-    setTodolists([todolist, ...todolists])
+    getTodolists([todolist, ...todolists])
     setTasks({ ...tasks, [todolist.id]: [] })
   }
   const removeTodolist = (todolistID: string) => {
-    setTodolists(todolists.filter(tl => tl.id !== todolistID))
+    getTodolists(todolists.filter(tl => tl.id !== todolistID))
     delete tasks[todolistID]
     setTasks({ ...tasks })
   }
   const changeFilter = (todolistID: string, value: FilterType) => {
     const todolist = todolists.find(tl => tl.id === todolistID)
     if (todolist) todolist.filter = value
-    setTodolists([...todolists])
+    getTodolists([...todolists])
   }
   const changeTodolistTitle = (todolistID: string, newTitle: string) => {
     const todolist = todolists.find(tl => tl.id === todolistID)
     if (todolist) {
       todolist.title = newTitle
-      setTodolists([...todolists])
+      getTodolists([...todolists])
     }
 
   }
