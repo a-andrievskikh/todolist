@@ -15,12 +15,12 @@ import { ErrorSnackbar } from 'common/components'
 
 export const App = memo(({ demo = false }: AppPT) => {
   const { status, isInitialized, isLoggedIn, logOut } = useApp()
-    const progressStyles: CSSProperties = {
-      position: 'fixed',
-      top: '30%',
-      textAlign: 'center',
-      width: '100%',
-    }
+  const progressStyles: CSSProperties = {
+    position: 'fixed',
+    top: '30%',
+    textAlign: 'center',
+    width: '100%',
+  }
   const progressView = status === 'loading' && <LinearProgress color={'secondary'} />
 
   if (!isInitialized) {
