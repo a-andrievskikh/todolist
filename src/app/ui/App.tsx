@@ -1,4 +1,4 @@
-import './App.css'
+import 'app/ui/App.css'
 import { CSSProperties, memo } from 'react'
 import Container from '@mui/material/Container'
 import AppBar from '@mui/material/AppBar'
@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import LinearProgress from '@mui/material/LinearProgress'
 import { useApp } from 'app/hooks/useApp'
-import { AppRoutes } from 'app/AppRoutes'
+import { AppRoutes } from 'app/model/AppRoutes'
 import { ErrorSnackbar } from 'common/components'
 
 export const App = memo(({ demo = false }: AppPT) => {
