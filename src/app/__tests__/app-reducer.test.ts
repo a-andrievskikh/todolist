@@ -1,4 +1,5 @@
-import { appActions, appReducer, AppStateT } from 'app/app-reducer'
+import { appActions, appReducer } from 'app/model/app-reducer'
+import { AppStateT } from 'app/types/app-types'
 
 let startState: AppStateT
 
