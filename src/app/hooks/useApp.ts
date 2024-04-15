@@ -1,10 +1,10 @@
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { RequestStatusT } from 'app/app-reducer'
-import { isInitializedSelector, statusSelector } from 'app/app-selectors'
+import { isInitializedSelector, statusSelector } from 'app/model/app-selectors'
 import { authThunks } from 'features/Auth/model/auth-reducer'
 import { useEffect } from 'react'
 import { isLoggedInSelector } from 'features/Auth/model/auth-selectors'
+import { RequestStatusT } from 'app/types/app-types'
 
 export const useApp = () => {
   const status = useAppSelector<RequestStatusT>(statusSelector)
@@ -16,7 +16,7 @@ export const useApp = () => {
   const logOutHandler = () => dispatch(authThunks.logout())
 
   useEffect(() => {
-    dispatch(authThunks.me())
+    dispatch(authThunks.initializeApp())
   }, [dispatch])
 
   return {
