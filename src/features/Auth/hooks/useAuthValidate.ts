@@ -1,9 +1,10 @@
-import { useFormik } from 'formik'
+import { FormikHelpers, FormikErrors, useFormik } from 'formik'
 import { authThunks } from 'features/Auth/model/auth-reducer'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { AuthDataT } from 'features/Auth/api/auth-api-types'
+import { AuthDataT } from 'features/Auth/types/auth-api-types'
+import { BaseResponseT } from 'common/types'
 
-const validate = (values: FormikErrorT) => {
+const validate = (values: FormikErrors<FormikErrorT>) => {
   const errors: FormikErrorT = {}
   const emailRegexp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   const passwordRegexp = /^.{4,20}$/i
@@ -31,8 +32,14 @@ export const useAuthValidate = () => {
       rememberMe: false,
     } as AuthDataT,
     validate,
-    onSubmit: () => {
-      dispatch(authThunks.login(formik.values))
+    onSubmit: (values, formikHelpers: FormikHelpers<AuthDataT>) => {
+      dispatch(authThunks.login(values))
+        .unwrap()
+        .catch((e: BaseResponseT) => {
+          e.fieldsErrors?.forEach(fieldError =>
+            formikHelpers.setFieldError(fieldError.field, fieldError.error)
+          )
+        })
       formik.resetForm()
     },
   })
