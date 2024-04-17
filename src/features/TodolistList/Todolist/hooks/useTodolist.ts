@@ -1,8 +1,11 @@
-import { FilterT, todolistsActions, todolistsThunks } from 'features/TodolistList/todolists-reducer'
+import {
+  todolistsActions,
+  todolistsThunks,
+} from 'features/TodolistList/Todolist/model/todolist-reducer'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useCallback } from 'react'
-import { tasksThunks } from 'features/TodolistList/tasks-reducer'
-import { TodolistPT } from 'features/TodolistList/Todolist/Todolist'
+import { tasksThunks } from 'features/TodolistList/Todolist/Task/model/tasks-reducer'
+import { FilterT, TodolistPT } from 'features/TodolistList/Todolist/types/todolist-types'
 
 export const useTodolist = ({ todolist, demo }: TodolistPT) => {
   const dispatch = useAppDispatch()
