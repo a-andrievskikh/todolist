@@ -2,15 +2,15 @@ import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import {
   getTodolists,
-  TodolistDomainT,
   todolistsThunks,
-} from 'features/TodolistList/todolists-reducer'
-import { todolistsSelector } from 'features/TodolistList/todolistList-selector'
+} from 'features/TodolistList/Todolist/model/todolist-reducer'
+import { todolistsSelector } from 'features/TodolistList/model/todolistList-selector'
 import { isLoggedInSelector } from 'features/Auth/model/auth-selectors'
 import { useCallback, useEffect } from 'react'
-import { TodolistListPropsT } from 'features/TodolistList/TodolistList'
+import { TodolistDomainT } from 'features/TodolistList/Todolist/types/todolist-types'
+import { TodolistListTypes } from 'features/TodolistList/types/todolistList-types'
 
-export const useTodolistList = ({ demo }: TodolistListPropsT) => {
+export const useTodolistList = ({ demo }: TodolistListTypes) => {
   const dispatch = useAppDispatch()
   const todolists = useAppSelector<TodolistDomainT[]>(todolistsSelector)
   const isLoggedIn = useAppSelector<boolean>(isLoggedInSelector)
