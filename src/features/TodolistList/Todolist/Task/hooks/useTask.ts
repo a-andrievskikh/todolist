@@ -1,6 +1,6 @@
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { ChangeEvent, useCallback } from 'react'
-import { tasksThunks } from 'features/TodolistList/tasks-reducer'
+import { tasksThunks } from 'features/TodolistList/Todolist/Task/model/tasks-reducer'
 import { TaskStatuses } from 'common/enums/enums'
 
 export const useTask = (todolistID: string, taskID: string, status: TaskStatuses) => {
