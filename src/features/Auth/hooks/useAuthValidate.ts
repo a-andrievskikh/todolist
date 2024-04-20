@@ -40,7 +40,7 @@ export const useAuthValidate = () => {
             formikHelpers.setFieldError(fieldError.field, fieldError.error)
           )
         })
-      formik.resetForm()
+      // formik.resetForm()
     },
   })
 
