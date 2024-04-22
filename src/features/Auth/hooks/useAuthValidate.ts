@@ -3,6 +3,7 @@ import { authThunks } from 'features/Auth/model/auth-reducer'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { AuthDataT } from 'features/Auth/types/auth-api-types'
 import { BaseResponseT } from 'common/types'
+import { useActions } from 'common/hooks/useActions'
 
 const validate = (values: FormikErrors<FormikErrorT>) => {
   const errors: FormikErrorT = {}
@@ -23,7 +24,7 @@ const validate = (values: FormikErrors<FormikErrorT>) => {
 }
 
 export const useAuthValidate = () => {
-  const dispatch = useAppDispatch()
+  const { login } = useActions(authThunks)
 
   const formik = useFormik({
     initialValues: {
@@ -33,7 +34,7 @@ export const useAuthValidate = () => {
     } as AuthDataT,
     validate,
     onSubmit: (values, formikHelpers: FormikHelpers<AuthDataT>) => {
-      dispatch(authThunks.login(values))
+      login(values)
         .unwrap()
         .catch((e: BaseResponseT) => {
           e.fieldsErrors?.forEach(fieldError =>
