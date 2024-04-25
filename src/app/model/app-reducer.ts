@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RequestStatusT, ResponseErrorT } from 'app/types/app-types'
 
 const slice = createSlice({
   name: 'app',
@@ -6,7 +7,6 @@ const slice = createSlice({
     status: 'loading' as RequestStatusT,
     error: null as ResponseErrorT,
     isInitialized: false,
-    //'Error message 😠'
   },
   reducers: {
     setAppStatus: (state, action: PayloadAction<{ status: RequestStatusT }>) => {
@@ -23,8 +23,4 @@ const slice = createSlice({
 
 export const appReducer = slice.reducer
 export const appActions = slice.actions
-
-// Types
-export type AppStateT = ReturnType<typeof slice.getInitialState>
-export type RequestStatusT = 'idle' | 'loading' | 'succeeded' | 'failed'
-export type ResponseErrorT = string | null
+export const appSlice = slice
