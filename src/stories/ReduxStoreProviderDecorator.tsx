@@ -2,16 +2,16 @@ import { ReactNode } from 'react'
 import { v1 } from 'uuid'
 import { Provider } from 'react-redux'
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux'
-import { tasksReducer } from 'features/TodolistList/tasks-reducer'
-import { todolistsReducer } from 'features/TodolistList/todolists-reducer'
-import { appReducer } from 'app/app-reducer'
+import { tasksReducer } from 'features/TodolistList/Todolist/Task/model/tasks-reducer'
+import { todolistReducer } from 'features/TodolistList/Todolist/model/todolist-reducer'
+import { appReducer } from 'app/model/app-reducer'
 import { AppRootStateT } from 'app/store'
 import thunk from 'redux-thunk'
 import { TaskStatuses } from 'common/enums/enums'
 
 export const rootReducer = combineReducers({
   tasks: tasksReducer,
-  todolists: todolistsReducer,
+  todolists: todolistReducer,
   app: appReducer,
 })
 
