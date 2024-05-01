@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { Task } from './Task'
+import { Task } from 'features/TodolistList/Todolist/Task/ui/Task'
 import { ReduxStoreProviderDecorator, todolistID1 } from 'stories/ReduxStoreProviderDecorator'
 import { useSelector } from 'react-redux'
 import { AppRootStateT } from 'app/store'
-import { TaskT } from 'features/TodolistList/Todolist/task-types'
+import { TaskT } from 'features/TodolistList/Todolist/Task/types/task-types'
 
 const meta: Meta<typeof Task> = {
   title: 'Todolists/Task',
