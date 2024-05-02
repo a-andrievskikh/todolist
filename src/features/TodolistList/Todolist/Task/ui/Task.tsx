@@ -5,25 +5,27 @@ import { memo } from 'react'
 import { useTask } from 'features/TodolistList/Todolist/Task/hooks/useTask'
 import { EditableSpan } from 'common/components'
 import { TaskStatuses } from 'common/enums/enums'
+import { TaskPT } from 'features/TodolistList/Todolist/Task/types/task-types'
 
 export const Task = memo(({ todolistID, taskID, title, status }: TaskPT) => {
-  const { deleteTask, updateTaskStatus, updateTaskTitle, listItemClassName } = useTask(todolistID, taskID, status)
+  const {
+    deleteTaskCallBack,
+    updateTaskStatusCallBack,
+    updateTaskTitleCallBack,
+    listItemClassName,
+  } = useTask(todolistID, taskID, status)
 
   return (
     <li className={listItemClassName} key={taskID}>
-      <Checkbox color='primary' checked={status === TaskStatuses.Completed} onChange={updateTaskStatus} />
-      <EditableSpan value={title} onChangeTitle={updateTaskTitle} />
-      <IconButton onClick={deleteTask}>
+      <Checkbox
+        color='primary'
+        checked={status === TaskStatuses.Completed}
+        onChange={updateTaskStatusCallBack}
+      />
+      <EditableSpan value={title} onChangeTitle={updateTaskTitleCallBack} />
+      <IconButton onClick={deleteTaskCallBack}>
         <Delete fontSize={'small'} />
       </IconButton>
     </li>
   )
 })
-
-// Types
-export type TaskPT = {
-  todolistID: string
-  taskID: string
-  title: string
-  status: TaskStatuses
-}
