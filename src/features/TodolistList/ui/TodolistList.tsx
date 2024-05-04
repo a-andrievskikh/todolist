@@ -1,12 +1,13 @@
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { memo } from 'react'
-import { Todolist } from './Todolist/Todolist'
+import { Todolist } from 'features/TodolistList/Todolist/ui/Todolist'
 import { Navigate } from 'react-router-dom'
 import { ItemForm } from 'common/components'
 import { useTodolistList } from 'features/TodolistList/hooks/useTodolistList'
+import { TodolistListTypes } from 'features/TodolistList/types/todolistList-types'
 
-export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
+export const TodolistList = memo(({ demo = false }: TodolistListTypes) => {
   const { todolists, isLoggedIn, addTodolist } = useTodolistList({ demo })
 
   if (!isLoggedIn) return <Navigate to={'/login'} />
@@ -32,6 +33,3 @@ export const TodolistList = memo(({ demo = false }: TodolistListPropsT) => {
     </>
   )
 })
-
-// Types
-export type TodolistListPropsT = { demo?: boolean }
