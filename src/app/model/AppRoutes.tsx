@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { TodolistList } from 'features/TodolistList/TodolistList'
+import { TodolistList } from 'features/TodolistList/ui/TodolistList'
 import { Auth } from 'features/Auth/ui/Auth'
 
 export const AppRoutes = ({ demo = false }: AppRoutesPT) => {
