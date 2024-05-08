@@ -1,11 +1,11 @@
 import {
   todolistsActions,
   todolistsThunks,
-} from 'features/TodolistList/Todolist/model/todolist-reducer'
+} from 'features/TodolistList/ui/Todolist/model/todolist-reducer'
 import { useCallback } from 'react'
-import { tasksThunks } from 'features/TodolistList/Todolist/Task/model/tasks-reducer'
-import { FilterT, TodolistPT } from 'features/TodolistList/Todolist/types/todolist-types'
-import { useActions } from 'common/hooks/useActions'
+import { tasksThunks } from 'features/TodolistList/ui/Todolist/ui/Task/model/tasks-reducer'
+import { FilterT, TodolistPT } from 'features/TodolistList/ui/Todolist/types/todolist-types'
+import { useActions } from 'shared/lib'
 
 export const useTodolist = ({ todolist, demo }: TodolistPT) => {
   const { createTask, updateTodolistTitle, updateTodolistFilter, deleteTodolist } = useActions({
