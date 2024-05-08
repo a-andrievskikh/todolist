@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
-import { ItemFormPT } from 'common/components/ItemForm/ItemForm'
+import { ItemFormPT } from 'shared/ui/ItemForm/ItemForm'
 
 export const useItemForm = ({ addItem }: ItemFormPT) => {
   const [title, setTitle] = useState<string>('')
