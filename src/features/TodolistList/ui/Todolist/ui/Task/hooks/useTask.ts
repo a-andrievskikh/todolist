@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback } from 'react'
-import { tasksThunks } from 'features/TodolistList/Todolist/Task/model/tasks-reducer'
-import { TaskStatuses } from 'common/enums/enums'
-import { useActions } from 'common/hooks/useActions'
+import { tasksThunks } from 'features/TodolistList/ui/Todolist/ui/Task/model/tasks-reducer'
+import { TaskStatuses } from 'shared/enums/enums'
+import { useActions } from 'shared/lib'
 
 export const useTask = (todolistID: string, taskID: string, status: TaskStatuses) => {
   const { deleteTask, updateTask } = useActions(tasksThunks)
@@ -25,8 +25,8 @@ export const useTask = (todolistID: string, taskID: string, status: TaskStatuses
   )
 
   const updateTaskTitleCallBack = useCallback(
-    (taskTitle: string) => {
-      updateTask({ todolistID, taskID, model: { title: taskTitle } })
+    (title: string) => {
+      updateTask({ todolistID, taskID, model: { title } })
     },
     [updateTask, todolistID, taskID]
   )
