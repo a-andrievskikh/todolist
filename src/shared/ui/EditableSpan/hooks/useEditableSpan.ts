@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react'
-import { EditableSpanPT } from 'common/components/EditableSpan/EditableSpan'
+import { EditableSpanPT } from 'shared/ui/EditableSpan/EditableSpan'
 
 export const useEditableSpan = ({ value, onChangeTitle }: EditableSpanPT) => {
   const [editMode, setEditMode] = useState<boolean>(false)
@@ -15,7 +15,10 @@ export const useEditableSpan = ({ value, onChangeTitle }: EditableSpanPT) => {
     setTitle(value)
   }
 
-  const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value), [setTitle])
+  const onChangeHandler = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value),
+    [setTitle]
+  )
 
   return { editMode, title, activateViewMode, activateEditMode, setTitleHandler: onChangeHandler }
 }
