@@ -1,10 +1,11 @@
-import { FormikErrors, FormikHelpers, useFormik } from 'formik'
+import { FormikHelpers, useFormik } from 'formik'
 import { authThunks } from 'features/Auth/model/auth-reducer'
-import { AuthDataT } from 'features/Auth/types/auth-api-types'
-import { BaseResponseT } from 'common/types'
-import { useActions } from 'common/hooks/useActions'
+import { AuthParamsT, FormikErrorT } from 'features/Auth/types/auth-types'
+import { BaseResponseT } from 'shared/types'
+import { useActions, useAppSelector } from 'shared/lib'
+import { isLoggedInSelector } from 'features/Auth/model/auth-selectors'
 
-const validate = (values: FormikErrors<FormikErrorT>) => {
+const validate = (values: AuthParamsT) => {
   const errors: FormikErrorT = {}
   const emailRegexp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   const passwordRegexp = /^.{4,20}$/i
@@ -24,15 +25,16 @@ const validate = (values: FormikErrors<FormikErrorT>) => {
 
 export const useAuthValidate = () => {
   const { login } = useActions(authThunks)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
       rememberMe: false,
-    } as AuthDataT,
+    },
     validate,
-    onSubmit: (values, formikHelpers: FormikHelpers<AuthDataT>) => {
+    onSubmit: (values, formikHelpers: FormikHelpers<AuthParamsT>) => {
       login(values)
         .unwrap()
         .catch((e: BaseResponseT) => {
@@ -47,11 +49,5 @@ export const useAuthValidate = () => {
   const isButtonDisabled =
     !!Object.values(formik.errors).length || !formik.values.email || !formik.values.password
 
-  return { formik, isButtonDisabled }
-}
-
-// Types
-type FormikErrorT = {
-  email?: string
-  password?: string
+  return { formik, isLoggedIn, isButtonDisabled }
 }
