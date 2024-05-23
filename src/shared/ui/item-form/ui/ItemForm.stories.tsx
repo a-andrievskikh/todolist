@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { ItemForm, ItemFormPT } from 'common/components/ItemForm/ItemForm'
+import { ItemForm } from 'shared/ui/item-form/ui/ItemForm'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { IconButton, TextField } from '@mui/material'
 import { AddBoxOutlined } from '@mui/icons-material'
+import { ItemFormProps } from 'shared/ui/item-form/ui/ItemForm.types'
 
 const meta: Meta<typeof ItemForm> = {
   title: 'Todolists/ItemForm',
@@ -21,7 +22,7 @@ type Story = StoryObj<typeof ItemForm>
 
 export const ItemFormStory: Story = {}
 
-const ItemFormWithError = (args: ItemFormPT) => {
+const ItemFormWithError = (args: ItemFormProps) => {
   const [title, setTitle] = useState<string>('')
   const [isError, setIsError] = useState<boolean>(true)
 
@@ -75,7 +76,7 @@ export const ItemFormWithErrorStory: Story = {
   render: args => <ItemFormWithError addItem={args.addItem} disabled={args.disabled} />,
 }
 
-const ItemFormDisabled = (args: ItemFormPT) => {
+const ItemFormDisabled = (args: ItemFormProps) => {
   const [title, setTitle] = useState<string>('')
   const [isError, setIsError] = useState<boolean>(false)
 
