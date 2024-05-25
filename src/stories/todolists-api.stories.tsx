@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { todolistsAPI } from 'features/TodolistList/todolists-api'
+import { todolistsApi } from 'features/todolists-list/ui/Todolist/api/todolistsApi'
 
 export default {
   title: 'API/todolists',
@@ -8,7 +8,7 @@ export default {
 export const GetTodolists = () => {
   const [state, setState] = useState<any>(null)
   const onClickHandler = () => {
-    todolistsAPI.getTodolists().then(res => setState(res.data))
+    todolistsApi.getTodolists().then(res => setState(res.data))
   }
   return (
     <>
@@ -26,7 +26,7 @@ export const CreateTodolist = () => {
     getTodolistsTitle(e.currentTarget.value)
   }
   const onClickHandler = () => {
-    todolistsAPI.createTodolist(todolistTitle).then(res => setState(res.data))
+    todolistsApi.createTodolist(todolistTitle).then(res => setState(res.data))
   }
 
   return (
@@ -46,7 +46,7 @@ export const DeleteTodolist = () => {
     getTodolistsID(e.currentTarget.value)
   }
   const onClickHandler = () => {
-    todolistsAPI.deleteTodolist(todolistID).then(res => setState(res.data))
+    todolistsApi.deleteTodolist(todolistID).then(res => setState(res.data))
   }
 
   return (
@@ -71,13 +71,17 @@ export const UpdateTodolistTitle = () => {
     getTodolistsTitle(e.currentTarget.value)
   }
   const onClickHandler = () => {
-    todolistsAPI.updateTodolistTitle(todolistID, todolistTitle).then(res => setState(res.data))
+    todolistsApi.updateTodolistTitle(todolistID, todolistTitle).then(res => setState(res.data))
   }
 
   return (
     <>
       <input value={todolistID} onChange={onChangeIDHandler} placeholder={'Add Todolist ID'} />
-      <input value={todolistTitle} onChange={onChangeTitleHandler} placeholder={'Add Todolist Title'} />
+      <input
+        value={todolistTitle}
+        onChange={onChangeTitleHandler}
+        placeholder={'Add Todolist Title'}
+      />
       <button onClick={onClickHandler}>Update Todolist Title</button>
       <div>{JSON.stringify(state)}</div>
     </>
