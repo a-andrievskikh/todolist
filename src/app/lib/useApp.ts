@@ -1,10 +1,10 @@
 import { useAppSelector } from 'shared/lib'
 import { useActions } from 'shared/lib'
 import { isInitializedSelector, statusSelector } from 'app/model/appSelectors'
-import { authThunks } from 'features/auth/model/authSlice'
 import { useEffect } from 'react'
 import { isLoggedInSelector } from 'features/auth/model/authSelectors'
 import { RequestStatus } from 'app/ui/App.types'
+import { authThunks } from 'features/auth/model/authThunks'
 
 export const useApp = () => {
   const status = useAppSelector<RequestStatus>(statusSelector)
@@ -23,6 +23,6 @@ export const useApp = () => {
     status,
     isInitialized,
     isLoggedIn,
-    logout: logoutHandler,
+    logoutHandler,
   }
 }
