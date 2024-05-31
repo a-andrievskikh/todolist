@@ -1,17 +1,19 @@
 import { ReactNode } from 'react'
 import { v1 } from 'uuid'
 import { Provider } from 'react-redux'
-import { combineReducers, legacy_createStore as createStore } from 'redux'
-import { tasksReducer } from 'features/todolists-list/ui/Todolist/ui/Tasks/Task/model/tasksSlice'
-import { todolistsReducer } from 'features/todolists-list/ui/Todolist/model/todolistsSlice'
-import { appReducer } from 'app/model/appSlice'
-import { AppRootState } from 'app/model/store'
-import { TaskStatuses } from 'shared/enums/enums'
+import { legacy_createStore as createStore } from 'redux'
+import { appSlice } from 'app/model'
+import type { AppRootState } from 'app/store'
+import { TaskStatuses } from 'shared/enums'
+import { tasksReducer, todolistsReducer } from 'features/todolists-list/model'
+import { configureStore } from '@reduxjs/toolkit'
 
-export const rootReducer = combineReducers({
-  tasks: tasksReducer,
-  todolists: todolistsReducer,
-  app: appReducer,
+const store = configureStore({
+  reducer: {
+    tasks: tasksReducer,
+    todolists: todolistsReducer,
+    app: appSlice.reducer,
+  },
 })
 
 export const todolistID1 = v1()
@@ -22,7 +24,7 @@ const initialGlobalState: AppRootState = {
     {
       id: todolistID1,
       title: 'What to learn',
-      filter: 'all',
+      filterValue: 'all',
       entityStatus: 'idle',
       addedDate: '',
       order: 0,
@@ -30,7 +32,7 @@ const initialGlobalState: AppRootState = {
     {
       id: todolistID2,
       title: 'What to buy',
-      filter: 'all',
+      filterValue: 'all',
       entityStatus: 'loading',
       addedDate: '',
       order: 0,
@@ -100,7 +102,7 @@ const initialGlobalState: AppRootState = {
   },
 }
 
-export const storybookStore = createStore(rootReducer, initialGlobalState)
+const storybookStore = createStore(store.getState, initialGlobalState)
 
 export const ReduxStoreProviderDecorator = (storyFn: () => ReactNode) => {
   return <Provider store={storybookStore}>{storyFn()}</Provider>
