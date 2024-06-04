@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { App } from 'app/ui/App'
-import { ReduxStoreProviderDecorator } from 'stories/ReduxStoreProviderDecorator'
+import { App } from 'app/ui'
+import { ReduxStoreProviderDecorator } from 'app/store'
 
 const meta: Meta<typeof App> = {
   title: 'Todolists/App',
