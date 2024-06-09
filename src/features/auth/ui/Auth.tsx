@@ -6,14 +6,13 @@ import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+
 import { Navigate } from 'react-router-dom'
-import { useAuthValidate } from 'features/Auth/hooks/useAuthValidate'
-import { useAuth } from 'features/Auth/hooks/useAuth'
+import { useAuthValidate } from 'features/auth/lib'
 import s from './Auth.module.css'
 
 export const Auth = () => {
-  const { formik, isButtonDisabled } = useAuthValidate()
-  const { isLoggedIn } = useAuth()
+  const { formik, isLoggedIn, isButtonDisabled } = useAuthValidate()
 
   if (isLoggedIn) return <Navigate to={'/'} />
 
