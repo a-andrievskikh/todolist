@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { EditableSpan } from 'common/components/index'
+import { EditableSpan } from 'shared/ui'
 
 const meta: Meta<typeof EditableSpan> = {
   title: 'Todolists/EditableSpan',
@@ -9,7 +9,7 @@ const meta: Meta<typeof EditableSpan> = {
     value: {
       description: 'Start value empty. Add value push button set string.',
     },
-    onChangeTitle: {
+    onChangeValue: {
       description: 'Value EditableSpan changed',
       action: 'clicked',
     },
@@ -20,5 +20,5 @@ export default meta
 type Story = StoryObj<typeof EditableSpan>
 
 export const EditableSpanStory: Story = {
-  render: args => <EditableSpan value={'Start value'} onChangeTitle={args.onChangeTitle} />,
+  render: args => <EditableSpan value={'Start value'} onChangeValue={args.onChangeValue} />,
 }
