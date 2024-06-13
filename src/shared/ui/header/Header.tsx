@@ -1,8 +1,7 @@
-import { memo } from 'react'
 import { AppBar, Button, IconButton, Typography } from '@mui/material'
 import { Menu } from '@mui/icons-material'
 
-export const Header = memo(() => {
+export const Header = () => {
   return (
     <AppBar position='static'>
       <IconButton>
@@ -12,4 +11,4 @@ export const Header = memo(() => {
       <Button color={'inherit'}>Login</Button>
     </AppBar>
   )
-})
+}
