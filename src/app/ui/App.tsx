@@ -16,9 +16,7 @@ import { useActions, useAppSelector } from 'app/store'
 import type { RequestStatus } from 'shared/types'
 import { useEffect } from 'react'
 
-type Props = { demo?: boolean }
-
-export const App = ({ demo = false }: Props) => {
+export const App = () => {
   const { logout, initializeApp } = useActions(authThunks)
   const { statusSelector, isInitializedSelector } = appSelectors
   const { isLoggedInSelector } = authSelectors
@@ -28,8 +26,10 @@ export const App = ({ demo = false }: Props) => {
   const logoutHandler = () => logout()
 
   useEffect(() => {
-    initializeApp()
-  }, [initializeApp])
+    if (!isInitialized) {
+      initializeApp()
+    }
+  }, [isInitialized, initializeApp])
 
   const progressView = status === 'loading' && <LinearProgress color={'secondary'} />
 
@@ -40,7 +40,7 @@ export const App = ({ demo = false }: Props) => {
       </div>
     )
   }
-
+  console.log('reload!')
   return (
     <div className='App'>
       <ErrorSnackbar />
@@ -59,7 +59,7 @@ export const App = ({ demo = false }: Props) => {
         {progressView}
       </AppBar>
       <Container fixed>
-        <AppRoutes demo={demo} />
+        <AppRoutes />
       </Container>
     </div>
   )
