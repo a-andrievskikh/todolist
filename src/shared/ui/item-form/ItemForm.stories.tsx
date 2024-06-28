@@ -1,9 +1,13 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { ItemForm } from 'shared/ui/item-form/ui/ItemForm'
+import { ItemForm } from 'shared/ui/item-form'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { IconButton, TextField } from '@mui/material'
 import { AddBoxOutlined } from '@mui/icons-material'
-import { ItemFormProps } from 'shared/ui/item-form/ui/ItemForm.types'
+
+type Props = {
+  addItem: (title: string) => { unwrap: () => Promise<any> }
+  disabled?: boolean
+}
 
 const meta: Meta<typeof ItemForm> = {
   title: 'Todolists/ItemForm',
@@ -22,7 +26,7 @@ type Story = StoryObj<typeof ItemForm>
 
 export const ItemFormStory: Story = {}
 
-const ItemFormWithError = (args: ItemFormProps) => {
+const ItemFormWithError = (args: Props) => {
   const [title, setTitle] = useState<string>('')
   const [isError, setIsError] = useState<boolean>(true)
 
@@ -46,7 +50,7 @@ const ItemFormWithError = (args: ItemFormProps) => {
   }
 
   return (
-    <div>
+    <>
       <TextField
         variant={'outlined'}
         label={'Введите название'}
@@ -68,7 +72,7 @@ const ItemFormWithError = (args: ItemFormProps) => {
           fontSize={'small'}
         />
       </IconButton>
-    </div>
+    </>
   )
 }
 
@@ -76,7 +80,7 @@ export const ItemFormWithErrorStory: Story = {
   render: args => <ItemFormWithError addItem={args.addItem} disabled={args.disabled} />,
 }
 
-const ItemFormDisabled = (args: ItemFormProps) => {
+const ItemFormDisabled = (args: Props) => {
   const [title, setTitle] = useState<string>('')
   const [isError, setIsError] = useState<boolean>(false)
 
@@ -100,7 +104,7 @@ const ItemFormDisabled = (args: ItemFormProps) => {
   }
 
   return (
-    <div>
+    <>
       <TextField
         variant={'outlined'}
         label={'Введите название'}
@@ -123,7 +127,7 @@ const ItemFormDisabled = (args: ItemFormProps) => {
           fontSize={'small'}
         />
       </IconButton>
-    </div>
+    </>
   )
 }
 
