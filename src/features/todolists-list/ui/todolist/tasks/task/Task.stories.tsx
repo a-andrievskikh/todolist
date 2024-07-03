@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { Task } from 'features/todolists-list/ui/Todolist/ui/Tasks/ui/Task/ui/Task'
-import { ReduxStoreProviderDecorator, todolistID1 } from 'stories/ReduxStoreProviderDecorator'
 import { useSelector } from 'react-redux'
-import { AppRootState } from 'app/model/store'
-import { TaskT } from 'features/todolists-list/ui/Todolist/ui/Tasks/ui/Task/ui/Task.types'
+import { type AppRootState, ReduxStoreProviderDecorator, todolistID1 } from 'app/store'
+import type { TaskT } from 'shared/types'
+import { Task } from 'features/todolists-list/ui/todolist/tasks/task'
 
 const meta: Meta<typeof Task> = {
   title: 'Todolists/Task',
@@ -18,7 +17,7 @@ type Story = StoryObj<typeof Task>
 const TaskWithRedux = () => {
   const task = useSelector<AppRootState, TaskT>(state => state.tasks[todolistID1][0])
   return task ? (
-    <Task taskID={task.id} title={task.title} status={task.status} todolistID={todolistID1} />
+    <Task task={task} todolistID={todolistID1} />
   ) : (
     <>Tasks have expired. Restart Storybook</>
   )
