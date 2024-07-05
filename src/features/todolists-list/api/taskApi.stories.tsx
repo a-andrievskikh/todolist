@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { tasksAPI } from 'features/TodolistList/Todolist/Task/api/tasks-api'
+import { tasksApi } from 'features/todolists-list/api/index'
 
 export default {
   title: 'API/tasks',
@@ -10,7 +10,7 @@ export const GetTasks = () => {
   const [todolistID, getTodolistsID] = useState<string>('')
 
   const onClickHandler = () => {
-    tasksAPI.getTasks(todolistID).then(res => setState(res.data))
+    tasksApi.getTasks(todolistID).then(res => setState(res.data))
   }
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
@@ -36,7 +36,7 @@ export const CreateTask = () => {
     setTaskTitle(e.currentTarget.value)
 
   const onClickHandler = () => {
-    tasksAPI.createTask({ todolistID, title }).then(res => setState(res.data))
+    tasksApi.createTask({ todolistID, title }).then(res => setState(res.data))
   }
 
   return (
@@ -64,7 +64,7 @@ export const DeleteTask = () => {
     setTaskID(e.currentTarget.value)
 
   const onClickHandler = () => {
-    tasksAPI.deleteTask({ todolistID, taskID }).then(res => setState(res.data))
+    tasksApi.deleteTask({ todolistID, taskID }).then(res => setState(res.data))
   }
 
   return (
@@ -110,7 +110,7 @@ export const UpdateTaskTitle = () => {
     setDeadline(e.currentTarget.value)
 
   const onClickHandler = () => {
-    tasksAPI
+    tasksApi
       .updateTask({
         todolistID,
         taskID,
