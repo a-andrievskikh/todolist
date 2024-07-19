@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { todolistsApi } from 'features/todolists-list/ui/Todolist/api/todolistsApi'
+import { todolistsApi } from 'features/todolists-list/api/index'
 
 export default {
   title: 'API/todolists',
